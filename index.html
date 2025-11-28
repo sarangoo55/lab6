@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,99 +13,99 @@
             font-family: Arial, sans-serif;
         }
 
-        body {
-            scroll-behavior: smooth;
-        }
-
         .header {
-            width: 100%;
-            padding: 15px 30px;
             position: fixed;
             top: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: transparent;
-            z-index: 100;
-        }
-
-        .header a {
-            text-decoration: none;
-            color: black;
-            margin: 0 10px;
-            font-size: 14px;
-        }
-
-        .hero {
-            height: 100vh;
             width: 100%;
-            background-size: cover;
-            background-position: center;
+            padding: 15px 40px;
+
             display: flex;
-            flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding-top: 100px;
-            padding-bottom: 40px;
+
+            backdrop-filter: blur(10px);
         }
 
-        .model-y {
-            background-image: url('img/model-y.jpg');
-        }
-
-        .model-3 {
-            background-image: url('img/model-3.jpg');
-        }
-
-        .title-box {
-            text-align: center;
-        }
-
-        .title-box h1 {
-            font-size: 40px;
+        .logo {
+            font-size: 24px;
             font-weight: bold;
+            letter-spacing: 4px;
         }
 
-        .title-box p {
-            margin-top: 5px;
-            font-size: 16px;
+        .center-links {
+            display: flex;
+            gap: 25px;
         }
 
-        .buttons {
+        .center-links a {
+            text-decoration: none;
+            font-size: 15px;
+            color: #000;
+        }
+
+        .right-icons {
             display: flex;
             gap: 15px;
         }
 
+        .hero {
+            height: 100vh;
+            background-image: url("tesla.jpg"); 
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 150px;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: #000;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .btn-group {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
         .btn {
-            padding: 12px 30px;
-            font-size: 14px;
-            border-radius: 4px;
-            border: none;
-            cursor: pointer;
+            padding: 10px 40px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
         }
 
-        .btn.dark {
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-        }
-
-        .btn.light {
-            background: rgba(255, 255, 255, 0.8);
+        .white {
+            background: white;
             color: black;
         }
 
-        .footer {
-            padding: 20px;
-            background: #fff;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
+        .dark {
+            background: black;
+            color: white;
         }
 
-        .footer a {
-            font-size: 12px;
-            color: #555;
-            text-decoration: none;
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: -40px;
+            font-size: 14px;
+            color: #444;
+        }
+
+        @media (max-width: 768px) {
+            .center-links {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -115,52 +115,35 @@
     <header class="header">
         <div class="logo">TESLA</div>
 
-        <nav class="nav-center">
-            <a href="#">Model S</a>
-            <a href="#">Model 3</a>
-            <a href="#">Model X</a>
-            <a href="#">Model Y</a>
-            <a href="#">Solar Roof</a>
-            <a href="#">Solar Panels</a>
+        <nav class="center-links">
+            <a href="#">Vehicles</a>
+            <a href="#">Energy</a>
+            <a href="#">Charging</a>
+            <a href="#">Discover</a>
+            <a href="#">Shop</a>
         </nav>
 
-        <nav class="nav-right">
-            <a href="#">Shop</a>
-            <a href="#">Account</a>
-            <a href="#">Menu</a>
-        </nav>
+        <div class="right-icons">
+            <a href="#">🔍</a>
+            <a href="#">🌐</a>
+            <a href="#">👤</a>
+        </div>
     </header>
 
-    <section class="hero model-y">
-        <div class="title-box">
+    <section class="hero">
+        <div class="hero-content">
             <h1>Model Y</h1>
-            <p>From $29,990*</p>
-        </div>
+            <p>From $399/mo Lease</p>
 
-        <div class="buttons">
-            <button class="btn dark">Order Now</button>
-            <button class="btn light">Demo Drive</button>
-        </div>
-    </section>
-
-    <section class="hero model-3">
-        <div class="title-box">
-            <h1>Model 3</h1>
-            <p>From $26,990*</p>
-        </div>
-
-        <div class="buttons">
-            <button class="btn dark">Order Now</button>
-            <button class="btn light">Demo Drive</button>
+            <div class="btn-group">
+                <a class="btn white" href="#">Order Now</a>
+                <a class="btn dark" href="#">Demo Drive</a>
+            </div>
         </div>
     </section>
 
     <footer class="footer">
-        <a href="#">Tesla © 2025</a>
-        <a href="#">Privacy</a>
-        <a href="#">Contact</a>
-        <a href="#">News</a>
-        <a href="#">Careers</a>
+        <p>Tesla © 2024 | Privacy & Legal | Vehicle Recalls | Contact | News | Locations</p>
     </footer>
 
 </body>
