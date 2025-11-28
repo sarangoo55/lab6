@@ -1,150 +1,192 @@
 <!DOCTYPE html>
-<html lang="mn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tesla Clone</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tesla-style Homepage Clone</title>
+  <style>
+    * {
+      margin:0; padding:0; box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      overflow-x: hidden;
+    }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+    header {
+      position: fixed;
+      top:0; left:0; width:100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: rgba(255,255,255,0.8); 
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 4px;
+    }
+    nav.main-nav {
+      display: flex;
+      gap: 20px;
+    }
+    nav.main-nav a {
+      text-decoration: none;
+      color: #000;
+      font-size: 14px;
+      padding: 5px 10px;
+      transition: color 0.3s;
+    }
+    nav.main-nav a:hover {
+      color: #555;
+    }
 
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 15px 40px;
+    .hero {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      scroll-snap-align: start;
+      overflow: hidden;
+    }
+    .slide {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+    }
+    .slide h1 {
+      font-size: 56px;
+      margin-bottom: 10px;
+    }
+    .slide p {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .btn-group {
+      display: flex;
+      gap: 15px;
+    }
+    .btn {
+      padding: 12px 36px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .btn.light {
+      background: rgba(255,255,255,0.85);
+      color: #000;
+    }
+    .btn.dark {
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+    }
 
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+    .section {
+      min-height: 100vh;
+      width: 100%;
+      padding: 80px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .section h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    .section p {
+      font-size: 18px;
+      max-width: 800px;
+      margin-bottom: 30px;
+      color: #333;
+    }
 
-            backdrop-filter: blur(10px);
-        }
+    footer {
+      padding: 40px;
+      text-align: center;
+      background: #f9f9f9;
+      color: #555;
+    }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: 4px;
-        }
-
-        .center-links {
-            display: flex;
-            gap: 25px;
-        }
-
-        .center-links a {
-            text-decoration: none;
-            font-size: 15px;
-            color: #000;
-        }
-
-        .right-icons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .hero {
-            height: 100vh;
-            background-image: url("tesla.jpg"); 
-            background-size: cover;
-            background-position: center;
-
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            padding-bottom: 150px;
-        }
-
-        .hero-content {
-            text-align: center;
-            color: #000;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
-
-        .btn-group {
-            margin-top: 25px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .btn {
-            padding: 10px 40px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 16px;
-        }
-
-        .white {
-            background: white;
-            color: black;
-        }
-
-        .dark {
-            background: black;
-            color: white;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 20px;
-            margin-top: -40px;
-            font-size: 14px;
-            color: #444;
-        }
-
-        @media (max-width: 768px) {
-            .center-links {
-                display: none;
-            }
-        }
-    </style>
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 20px;
+      }
+      .hero .slide h1 {
+        font-size: 36px;
+      }
+      .hero .slide p {
+        font-size: 16px;
+      }
+      .section h2 {
+        font-size: 28px;
+      }
+      .section p {
+        font-size: 16px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-    <header class="header">
-        <div class="logo">TESLA</div>
+  <header>
+    <div class="logo">TESLA</div>
+    <nav class="main-nav">
+      <a href="#">Model S</a>
+      <a href="#">Model 3</a>
+      <a href="#">Model X</a>
+      <a href="#">Model Y</a>
+      <a href="#">Solar Roof</a>
+      <a href="#">Shop</a>
+    </nav>
+  </header>
 
-        <nav class="center-links">
-            <a href="#">Vehicles</a>
-            <a href="#">Energy</a>
-            <a href="#">Charging</a>
-            <a href="#">Discover</a>
-            <a href="#">Shop</a>
-        </nav>
-
-        <div class="right-icons">
-            <a href="#">🔍</a>
-            <a href="#">🌐</a>
-            <a href="#">👤</a>
-        </div>
-    </header>
+  <main>
 
     <section class="hero">
-        <div class="hero-content">
-            <h1>Model Y</h1>
-            <p>From $399/mo Lease</p>
-
-            <div class="btn-group">
-                <a class="btn white" href="#">Order Now</a>
-                <a class="btn dark" href="#">Demo Drive</a>
-            </div>
+      <div class="slide" style="background-image: url('https://tesla-cdn.thron.com/delivery/public/image/tesla/5833d749-d16c-4828-98e9-4e50d525f0e3/bvlatuR/std/2880x1800/Model-S-Performance-Hero-Desktop-LHD');">
+        <h1>Model S</h1>
+        <p>Electric Performance Sedan</p>
+        <div class="btn-group">
+          <a href="#" class="btn light">Order Now</a>
+          <a href="#" class="btn dark">Learn More</a>
         </div>
+      </div>
+    </section>
+      
+    <section class="hero">
+      <div class="slide" style="background-image: url('https://tesla-cdn.thron.com/delivery/public/image/tesla/8e75a896-b072-4b2e-a5e2-63b7858c409b/bvlatuR/std/2880x1800/Model-Y-Exterior-01');">
+        <h1>Model Y</h1>
+        <p>Versatile & Family Friendly</p>
+        <div class="btn-group">
+          <a href="#" class="btn light">Order Now</a>
+          <a href="#" class="btn dark">Learn More</a>
+        </div>
+      </div>
     </section>
 
-    <footer class="footer">
-        <p>Tesla © 2024 | Privacy & Legal | Vehicle Recalls | Contact | News | Locations</p>
-    </footer>
+    <section class="section">
+      <h2>Explore Tesla Energy</h2>
+      <p>Power your home with solar panels and store energy with Powerwall — sustainable energy for today and tomorrow.</p>
+      <a href="#" class="btn dark">Discover More</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tesla Clone. All Rights Reserved.</p>
+  </footer>
 
 </body>
 </html>
