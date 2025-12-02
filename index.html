@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tesla Clone</title>
+    <title>Tesla Clone Full</title>
 
     <style>
-        /* --- Reset --- */
         * {
             margin: 0;
             padding: 0;
@@ -19,7 +18,7 @@
             color: #000;
         }
 
-        /* --- Nav --- */
+        /* NAVBAR */
         .navbar {
             position: fixed;
             top: 0;
@@ -29,62 +28,56 @@
             justify-content: space-between;
             align-items: center;
             z-index: 10;
+            background: transparent;
         }
-
         .logo {
             width: 120px;
         }
-
         .nav-links {
             display: flex;
             gap: 25px;
             font-size: 15px;
             font-weight: 500;
         }
-
         .nav-links a {
             text-decoration: none;
             color: #000;
         }
-
         .right-links {
             display: flex;
             gap: 20px;
         }
 
-        /* --- Hero Section --- */
-        .hero {
+        /* SECTION STYLE */
+        .section {
             height: 100vh;
             width: 100%;
-            background-image: url("https://tesla-cdn.thron.com/delivery/public/image/tesla/5b9ff22f-0cb7-472e-9ad0-0d90fe3f263e/bvlatuR/std/0x0/homepage-model-y-desktop");
             background-size: cover;
             background-position: center;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
             text-align: center;
-            padding-top: 90px;
+            padding-top: 80px;
         }
 
-        .hero h1 {
+        .section h1 {
             font-size: 48px;
             font-weight: 700;
-            letter-spacing: -1px;
         }
 
-        .hero p {
+        .section p {
             font-size: 18px;
             margin-top: 8px;
         }
 
-        /* --- Buttons --- */
+        /* BUTTONS */
         .btn-area {
             margin-top: 25px;
             display: flex;
             gap: 16px;
         }
-
         .btn {
             width: 260px;
             padding: 13px 0;
@@ -93,68 +86,125 @@
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
-            display: inline-block;
         }
-
         .btn-dark {
             background: #171a20;
             color: #fff;
         }
-
         .btn-light {
             background: rgba(255, 255, 255, 0.65);
             color: #000;
             backdrop-filter: blur(5px);
         }
 
-        /* Mobile */
         @media(max-width: 700px) {
             .nav-links { display: none; }
             .right-links { display: none; }
-
-            .hero h1 { font-size: 36px; }
-            .btn-area {
-                flex-direction: column;
-                width: 80%;
-            }
-
-            .btn {
-                width: 100%;
-            }
+            .section h1 { font-size: 36px; }
+            .btn-area { flex-direction: column; width: 80%; }
+            .btn { width: 100%; }
         }
     </style>
 </head>
-
 <body>
 
-    <!-- Navigation Bar -->
-    <div class="navbar">
-        <img class="logo" src="https://www.tesla.com/sites/default/files/images/tesla_logo.png" />
-        
-        <div class="nav-links">
-            <a href="#">Vehicles</a>
-            <a href="#">Energy</a>
-            <a href="#">Charging</a>
-            <a href="#">Discover</a>
-            <a href="#">Shop</a>
-        </div>
-
-        <div class="right-links">
-            <a href="#">Account</a>
-            <a href="#">Menu</a>
-        </div>
+<!-- NAV -->
+<div class="navbar">
+    <img class="logo" src="https://www.tesla.com/sites/default/files/images/tesla_logo.png" />
+    
+    <div class="nav-links">
+        <a href="#">Vehicles</a>
+        <a href="#">Energy</a>
+        <a href="#">Charging</a>
+        <a href="#">Discover</a>
+        <a href="#">Shop</a>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Model Y</h1>
-        <p>From $31,490 · After Federal Tax Credit</p>
+    <div class="right-links">
+        <a href="#">Account</a>
+        <a href="#">Menu</a>
+    </div>
+</div>
 
-        <div class="btn-area">
-            <a class="btn btn-dark" href="#">Order Now</a>
-            <a class="btn btn-light" href="#">Demo Drive</a>
-        </div>
-    </section>
+<!-- MODEL Y -->
+<section class="section" style="background-image: url('https://tesla-cdn.thron.com/delivery/public/image/tesla/5b9ff22f-0cb7-472e-9ad0-0d90fe3f263e/bvlatuR/std/0x0/homepage-model-y-desktop');">
+    <h1>Model Y</h1>
+    <p>From $31,490 · After Federal Tax Credit</p>
+    <div class="btn-area">
+        <a class="btn btn-dark" href="#">Order Now</a>
+        <a class="btn btn-light" href="#">Demo Drive</a>
+    </div>
+</section>
+
+<!-- MODEL 3 -->
+<section class="section" style="background-image: url('https://tesla-cdn.thron.com/delivery/public/image/tesla/d1fec66f-9aac-4e8c-bb13-db8819cfbbb2/bvlatuR/std/0x0/homepage-model-3-refresh-hero-desktop');">
+    <h1>Model 3</h1>
+    <p>From $29,740 · After Federal Tax Credit</p>
+    <div class="btn-area">
+        <a class="btn btn-dark" href="#">Order Now</a>
+        <a class="btn btn-light" href="#">Demo Drive</a>
+    </div>
+</section>
+
+<!-- MODEL S -->
+<section class="section" style="background-image: url('https://tesla-cdn.thron.com/delivery/public/image/tesla/60033bf2-4d06-4672-908e-0f5a411bca2f/bvlatuR/std/0x0/homepage-model-s-desktop');">
+    <h1>Model S</h1>
+    <p>From $72,990</p>
+    <div class="btn-area">
+        <a class="btn btn-dark" href="#">Order Now</a>
+        <a class="btn btn-light" href="#">Demo Drive</a>
+    </div>
+</section>
+
+<!-- MODEL X -->
+<section class="section" style="background-image: url('https://tesla-cdn.thron.com/delivery/public/image/tesla/0f1a7a3b-aea7-4e88-b2be-810cd2bd2300/bvlatuR/std/0x0/homepage-model-x-desktop');">
+    <h1>Model X</h1>
+    <p>From $79,990</p>
+    <div class="btn-area">
+        <a class="btn btn-dark" href="#">Order Now</a>
+        <a class="btn btn-light" href="#">Demo Drive</a>
+    </div>
+</section>
+
+<!-- CYBERTRUCK -->
+<section class="section" style="background-image: url('https://tesla-cdn.thron.com/delivery/public/image/tesla/cybertruck/hero/desktop');">
+    <h1>Cybertruck</h1>
+    <p>All-New Electric Pickup</p>
+    <div class="btn-area">
+        <a class="btn btn-dark" href="#">Order Now</a>
+        <a class="btn btn-light" href="#">Learn More</a>
+    </div>
+</section>
+
+<!-- SOLAR PANELS -->
+<section class="section" style="background-image: url('https://tesla-cdn.thron.com/delivery/public/image/tesla/solar-panels/Homepage-SolarPanels-D');">
+    <h1>Solar Panels</h1>
+    <p>Lowest Cost Solar in America</p>
+    <div class="btn-area">
+        <a class="btn btn-dark" href="#">Order Now</a>
+        <a class="btn btn-light" href="#">Learn More</a>
+    </div>
+</section>
+
+<!-- SOLAR ROOF -->
+<section class="section" style="background-image: url('https://tesla-cdn.thron.com/delivery/public/image/tesla/solar-roof/Homepage-SolarRoof-D');">
+    <h1>Solar Roof</h1>
+    <p>Produce Clean Energy From Your Roof</p>
+    <div class="btn-area">
+        <a class="btn btn-dark" href="#">Order Now</a>
+        <a class="btn btn-light" href="#">Learn More</a>
+    </div>
+</section>
+
+<!-- POWERWALL -->
+<section class="section" style="background-image: url('https://tesla-cdn.thron.com/delivery/public/image/tesla/powerwall/Homepage-Powerwall-D');">
+    <h1>Powerwall</h1>
+    <p>Home Battery Backup</p>
+    <div class="btn-area">
+        <a class="btn btn-dark" href="#">Order Now</a>
+        <a class="btn btn-light" href="#">Learn More</a>
+    </div>
+</section>
 
 </body>
 </html>
