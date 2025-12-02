@@ -1,123 +1,158 @@
 <!DOCTYPE html>
 <html lang="mn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tesla Clone</title>
 
     <style>
-        *{
+        /* --- Reset --- */
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: "Inter", sans-serif;
         }
 
-        /* Navigation bar */
-        .nav{
+        body {
+            background: #fff;
+            color: #000;
+        }
+
+        /* --- Nav --- */
+        .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            height: 65px;
-            background: white;
+            padding: 18px 40px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 0 40px;
-            z-index: 100;
+            align-items: center;
+            z-index: 10;
         }
 
-        .nav .logo{
-            font-size: 26px;
-            letter-spacing: 8px;
-            font-weight: 600;
+        .logo {
+            width: 120px;
         }
 
-        .nav nav a{
-            margin: 0 15px;
-            text-decoration: none;
-            color: black;
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            font-size: 15px;
             font-weight: 500;
         }
 
-        .icons span{
-            margin-left: 20px;
-            font-size: 20px;
-            cursor: pointer;
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
         }
 
-        /* Hero section */
-        .hero{
-            width: 100%;
+        .right-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
             height: 100vh;
-            background-image: url('https://tesla-cdn.thron.com/delivery/public/image/tesla/55f4ce6c-3ea6-46b8-8dfc-1d1813327762/bvlatuR/std/2880x1800/M3-Hero-Desktop');
+            width: 100%;
+            background-image: url("https://tesla-cdn.thron.com/delivery/public/image/tesla/5b9ff22f-0cb7-472e-9ad0-0d90fe3f263e/bvlatuR/std/0x0/homepage-model-y-desktop");
             background-size: cover;
             background-position: center;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
             text-align: center;
-            color: white;
+            padding-top: 90px;
         }
 
-        .hero h1{
-            font-size: 64px;
-            margin-top: 80px;
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -1px;
         }
 
-        .buttons{
-            margin-top: 20px;
-        }
-
-        .btn{
-            padding: 12px 32px;
-            border-radius: 4px;
+        .hero p {
             font-size: 18px;
-            text-decoration: none;
-            margin: 0 10px;
+            margin-top: 8px;
+        }
+
+        /* --- Buttons --- */
+        .btn-area {
+            margin-top: 25px;
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn {
+            width: 260px;
+            padding: 13px 0;
+            border-radius: 6px;
+            font-size: 15px;
             font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        .btn.blue{
-            background: #3e6ae1;
-            color: white;
+        .btn-dark {
+            background: #171a20;
+            color: #fff;
         }
 
-        .btn.white{
-            background: white;
-            color: black;
+        .btn-light {
+            background: rgba(255, 255, 255, 0.65);
+            color: #000;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Mobile */
+        @media(max-width: 700px) {
+            .nav-links { display: none; }
+            .right-links { display: none; }
+
+            .hero h1 { font-size: 36px; }
+            .btn-area {
+                flex-direction: column;
+                width: 80%;
+            }
+
+            .btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <!-- Navigation -->
-    <header class="nav">
-        <div class="logo">TESLA</div>
-
-        <nav>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <img class="logo" src="https://www.tesla.com/sites/default/files/images/tesla_logo.png" />
+        
+        <div class="nav-links">
             <a href="#">Vehicles</a>
             <a href="#">Energy</a>
             <a href="#">Charging</a>
             <a href="#">Discover</a>
             <a href="#">Shop</a>
-        </nav>
-
-        <div class="icons">
-            <span>?</span>
-            <span>🌐</span>
-            <span>👤</span>
         </div>
-    </header>
+
+        <div class="right-links">
+            <a href="#">Account</a>
+            <a href="#">Menu</a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
         <h1>Model Y</h1>
+        <p>From $31,490 · After Federal Tax Credit</p>
 
-        <div class="buttons">
-            <a href="#" class="btn blue">Order Now</a>
-            <a href="#" class="btn white">Learn More</a>
+        <div class="btn-area">
+            <a class="btn btn-dark" href="#">Order Now</a>
+            <a class="btn btn-light" href="#">Demo Drive</a>
         </div>
     </section>
 
