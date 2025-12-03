@@ -1,138 +1,241 @@
 <!DOCTYPE html>
-<html lang="mn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tesla Clone</title>
-
+    <link rel="stylesheet" href="style.css">
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif; }
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-        .navbar {
-            position: fixed;
-            top:0;
-            width:100%;
-            padding:18px 40px;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            background:rgba(255,255,255,0.8);
-            backdrop-filter:blur(5px);
-            z-index:10;
-        }
-        .navbar a { margin:0 10px; text-decoration:none; color:black; }
+/* HEADER */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 12px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
 
-        .section {
-            height:100vh;
-            width:100%;
-            background-size:cover;
-            background-position:center;
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-            color:white;
-            text-shadow:0 2px 10px black;
-            text-align:center;
-        }
+header a {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    font-size: 14px;
+}
 
-        h1 { font-size:50px; margin-bottom:10px; }
-        p { font-size:20px; }
+.logo {
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 3px;
+}
 
-        .btn-area { margin-top:20px; display:flex; gap:15px; }
-        .btn {
-            padding:12px 32px;
-            border-radius:5px;
-            text-decoration:none;
-            font-weight:bold;
-        }
-        .btn-dark { background:#111; color:white; }
-        .btn-light { background:white; color:black; }
+/* FLEX MENUS */
+.center-menu, .right-menu {
+    display: flex;
+    gap: 15px;
+}
+
+/* SECTIONS */
+.hero {
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    text-align: center;
+    margin-top: 70px;
+    color: #000;
+}
+
+h1 {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/* BUTTONS */
+.buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+button {
+    padding: 12px 30px;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+.primary {
+    background: #3b3b3b;
+    color: white;
+}
+
+.secondary {
+    background: white;
+    color: black;
+    border: 2px solid black;
+}
+
+/* BACKGROUND IMAGES */
+.model-y {
+    background-image: url("https://tesla-cdn.thron.com/delivery/public/image/tesla/4f0e4c22-c3e0-43e3-821e-e851b8f9eb07/bvlatuR/std/2880x1800/Desktop-ModelY");
+}
+
+.model-3 {
+    background-image: url("https://tesla-cdn.thron.com/delivery/public/image/tesla/20c28e84-68f0-409f-b8bf-5ed5f316df98/bvlatuR/std/2880x1800/Desktop-Model3");
+}
+
+.model-x {
+    background-image: url("https://tesla-cdn.thron.com/delivery/public/image/tesla/b12dfc71-5824-4632-b8db-d102d3243c52/bvlatuR/std/2880x1800/Desktop-ModelX");
+}
+
+.model-s {
+    background-image: url("https://tesla-cdn.thron.com/delivery/public/image/tesla/0c01d9af-2979-49b7-bc02-c604a444ef98/bvlatuR/std/2880x1800/Desktop-ModelS");
+}
+
+.solar-roof {
+    background-image: url("https://tesla-cdn.thron.com/delivery/public/image/tesla/ce78c59d-eddc-4e68-927d-b6911ee143a8/bvlatuR/std/2880x1800/Solar-Roof");
+}
+
+.charging {
+    background-image: url("https://tesla-cdn.thron.com/delivery/public/image/tesla/52b016bb-3db1-4edf-ba61-7e7a541ad11f/bvlatuR/std/2880x1800/Home-Charging");
+}
+
+/* FOOTER */
+footer {
+    background: #f5f5f5;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+}
 
     </style>
 </head>
 <body>
 
-<!-- NAV -->
-<div class="navbar">
-    <div><strong>TESLA</strong></div>
-    <div>
-        <a href="#">Vehicles</a>
-        <a href="#">Energy</a>
-        <a href="#">Charging</a>
-        <a href="#">Shop</a>
-    </div>
-</div>
+    <!-- HEADER -->
+    <header>
+        <div class="logo">TESLA</div>
 
-<!-- MODEL Y -->
-<section class="section" style="background-image:url('https://images.unsplash.com/photo-1617788138017-80ad1926c93e?auto=format&fit=crop&w=1600&q=80');">
-    <h1>Model Y</h1>
-    <p>Order now</p>
-    <div class="btn-area">
-        <a href="#" class="btn btn-dark">Order Now</a>
-        <a href="#" class="btn btn-light">Demo Drive</a>
-    </div>
-</section>
+        <nav class="center-menu">
+            <a href="#">Vehicles</a>
+            <a href="#">Energy</a>
+            <a href="#">Charging</a>
+            <a href="#">Discover</a>
+        </nav>
 
-<!-- MODEL 3 -->
-<section class="section" style="background-image:url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1600&q=80');">
-    <h1>Model 3</h1>
-    <p>Experience Performance</p>
-    <div class="btn-area">
-        <a href="#" class="btn btn-dark">Order Now</a>
-        <a href="#" class="btn btn-light">Demo Drive</a>
-    </div>
-</section>
+        <nav class="right-menu">
+            <a href="#">Shop</a>
+            <a href="#">Account</a>
+        </nav>
+    </header>
 
-<!-- MODEL S -->
-<section class="section" style="background-image:url('https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1600&q=80');">
-    <h1>Model S</h1>
-    <p>Luxury Performance</p>
-    <div class="btn-area">
-        <a href="#" class="btn btn-dark">Order Now</a>
-        <a href="#" class="btn btn-light">Learn More</a>
-    </div>
-</section>
+    <!-- MODEL Y -->
+    <section class="hero model-y">
+        <div class="content">
+            <h1>Model Y</h1>
+            <p>From $31,490</p>
 
-<!-- MODEL X -->
-<section class="section" style="background-image:url('https://images.unsplash.com/photo-1502872364588-894d7d6ddfab?auto=format&fit=crop&w=1600&q=80');">
-    <h1>Model X</h1>
-    <p>From $79,990</p>
-    <div class="btn-area">
-        <a href="#" class="btn btn-dark">Order Now</a>
-        <a href="#" class="btn btn-light">Learn More</a>
-    </div>
-</section>
+            <div class="buttons">
+                <button class="primary">Order Now</button>
+                <button class="secondary">Demo Drive</button>
+            </div>
+        </div>
+    </section>
 
-<!-- CYBERTRUCK -->
-<section class="section" style="background-image:url('https://images.unsplash.com/photo-1702758537471-459b511650b5?auto=format&fit=crop&w=1600&q=80');">
-    <h1>Cybertruck</h1>
-    <p>Future of Trucks</p>
-    <div class="btn-area">
-        <a href="#" class="btn btn-dark">Reserve</a>
-        <a href="#" class="btn btn-light">Specs</a>
-    </div>
-</section>
+    <!-- MODEL 3 -->
+    <section class="hero model-3">
+        <div class="content">
+            <h1>Model 3</h1>
+            <p>From $33,990</p>
 
-<!-- SOLAR PANELS -->
-<section class="section" style="background-image:url('https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=1600&q=80');">
-    <h1>Solar Panels</h1>
-    <p>Clean Energy</p>
-    <div class="btn-area">
-        <a href="#" class="btn btn-dark">Order Now</a>
-        <a href="#" class="btn btn-light">Learn More</a>
-    </div>
-</section>
+            <div class="buttons">
+                <button class="primary">Order Now</button>
+                <button class="secondary">Demo Drive</button>
+            </div>
+        </div>
+    </section>
 
-<!-- SOLAR ROOF -->
-<section class="section" style="background-image:url('https://images.unsplash.com/photo-1617191519105-3e0f91da5a80?auto=format&fit=crop&w=1600&q=80');">
-    <h1>Solar Roof</h1>
-    <p>Power your home</p>
-    <div class="btn-area">
-        <a href="#" class="btn btn-dark">Order Now</a>
-        <a href="#" class="btn btn-light">Learn More</a>
-    </div>
-</section>
+    <!-- MODEL X -->
+    <section class="hero model-x">
+        <div class="content">
+            <h1>Model X</h1>
+            <p>From $56,990</p>
+
+            <div class="buttons">
+                <button class="primary">Order Now</button>
+                <button class="secondary">Demo Drive</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODEL S -->
+    <section class="hero model-s">
+        <div class="content">
+            <h1>Model S</h1>
+            <p>From $71,090</p>
+
+            <div class="buttons">
+                <button class="primary">Order Now</button>
+                <button class="secondary">Demo Drive</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLAR ROOF -->
+    <section class="hero solar-roof">
+        <div class="content">
+            <h1>Solar Roof</h1>
+            <p>Produce Clean Energy</p>
+
+            <div class="buttons">
+                <button class="primary">Order Now</button>
+                <button class="secondary">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHARGING -->
+    <section class="hero charging">
+        <div class="content">
+            <h1>Charging</h1>
+            <p>Charge Anywhere</p>
+
+            <div class="buttons">
+                <button class="primary">Order Now</button>
+                <button class="secondary">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2024 Tesla Clone — Student Project</p>
+        <p>Privacy • Contact • Careers • News • Locations</p>
+    </footer>
 
 </body>
 </html>
