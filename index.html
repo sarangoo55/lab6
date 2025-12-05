@@ -1,142 +1,145 @@
 <!DOCTYPE html>
-<html lang="mn">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tesla Clone — Hero with 3 slides</title>
-  <style>
-    /* basic reset */
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;font-family:Inter, Arial, sans-serif;color:#111}
-    body{background:#fff}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesla Clone</title>
 
-    /* header (simple) */
-    header{position:fixed;left:0;right:0;top:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;z-index:60;background:rgba(255,255,255,0.6);backdrop-filter:blur(6px)}
-    .logo{font-weight:700;letter-spacing:3px}
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif; }
 
-    /* HERO wrapper */
-    .hero-wrap{margin-top:64px; position:relative; width:100%; height:100vh; overflow:hidden}
+        /* ==== NAVBAR ==== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 60px;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 10;
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+        }
 
-    /* slides container - horizontal slider */
-    .slider {
-    position: relative;
-    width: 100%;
-    height: 600px;
-    overflow: hidden;
-}
+        .nav-left {
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
 
-.slides {
-    width: 100%;
-    height: 100%;
-}
+        .nav-right {
+            display: flex;
+            gap: 20px;
+            font-size: 22px;
+            cursor: pointer;
+        }
 
-.slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.7s ease-in-out;
-}
+        /* ==== SLIDER WRAPPER ==== */
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            height: 650px;
+            margin: 80px auto 0;
+            overflow: hidden;
+            border-radius: 10px;
+        }
 
-.slide.active {
-    opacity: 1;
-}
+        /* ==== SLIDES ==== */
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0;
+            transition: opacity 0.7s ease-in-out;
+        }
 
-.dots {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 12px;
-}
+        .slide.active {
+            opacity: 1;
+        }
 
-.dot {
-    width: 12px;
-    height: 12px;
-    background: #bbb;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.3s;
-}
+        /* ==== DOTS ==== */
+        .dots {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+        }
 
-.dot.active {
-    background: white;
-}
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: #d0d0d0;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-    /* responsive sizes */
-    @media (max-width:900px){
-      .caption h1{font-size:46px}
-      .arrow{width:44px;height:44px}
-    }
-    @media (max-width:520px){
-      .caption h1{font-size:28px; top:10%}
-      .btn{padding:9px 12px;font-size:14px}
-    }
-  </style>
+        .dot.active {
+            background: white;
+        }
+      
+        @media (max-width: 900px) {
+            .slider { height: 450px; }
+        }
+
+        @media (max-width: 600px) {
+            .slider { height: 320px; }
+        }
+    </style>
 </head>
+
 <body>
 
-  <header>
-    <div class="logo">TESLA</div>
-    <nav aria-hidden="true">Vehicles • Energy • Charging • Discover • Shop</nav>
-    <div aria-hidden="true">🌐 👤</div>
-  </header>
-
-  <main>
-    <section class="hero-wrap" id="hero">
-     <div class="slider">
-        <div class="slides">
-           <img src="images/Homepage-Card-Model-Y-Tablet-US-v2.avif" class="slide active">
-           <img src="images/Homepage-Card-Model-3-Tablet-US-v2.avif" class="slide">
-           <img src="images/Homepage-Promo-Meet-Model-Y-Tablet.avif" class="slide">
-     </div>
-
-      <!-- caption (keeps same text, sits above slides) -->
-      <div class="caption" aria-hidden="false">
-        <h1>Model Y</h1>
-        <div class="cta">
-          <button class="btn primary">Order Now</button>
-          <button class="btn ghost">Learn More</button>
-        </div>
-      </div>
-
-      <!-- arrows -->
-      <div class="arrow left" id="prev" role="button" aria-label="Previous">❮</div>
-      <div class="arrow right" id="next" role="button" aria-label="Next">❯</div>
-
-      <!-- dots -->
-         <div class="dots">
-        <span class="dot active" onclick="showSlide(0)"></span>
-        <span class="dot" onclick="showSlide(1)"></span>
-        <span class="dot" onclick="showSlide(2)"></span>
+    <!-- ==== NAVIGATION ==== -->
+    <div class="navbar">
+        <div class="nav-left">TESLA</div>
+        <nav aria-hidden="true">Vehicles • Energy • Charging • Discover • Shop</nav>
+        <div aria-hidden="true">🌐 👤</div>
     </div>
-</div>
-    </section>
-  </main>
 
-  <script>
-let currentSlide = 0;
-const slides = document.querySelectorAll(".slide");
-const dots = document.querySelectorAll(".dot");
+    <!-- ==== SLIDER ==== -->
+    <div class="slider">
+        <img src="images/Homepage-Card-Model-Y-Tablet-US-v2.avif" class="slide active">
+        <img src="images/Homepage-Card-Model-3-Tablet-US-v2.avif" class="slide">
+        <img src="images/Homepage-Promo-Meet-Model-Y-Tablet.avif" class="slide">
 
-function showSlide(n) {
-    slides[currentSlide].classList.remove("active");
-    dots[currentSlide].classList.remove("active");
+        <div class="dots">
+            <span class="dot active" onclick="showSlide(0)"></span>
+            <span class="dot" onclick="showSlide(1)"></span>
+            <span class="dot" onclick="showSlide(2)"></span>
+        </div>
+    </div>
 
-    currentSlide = n;
+    <!-- ==== JAVASCRIPT ==== -->
+    <script>
+        let current = 0;
+        const slides = document.querySelectorAll(".slide");
+        const dots = document.querySelectorAll(".dot");
 
-    slides[currentSlide].classList.add("active");
-    dots[currentSlide].classList.add("active");
-}
+        function showSlide(n) {
+            slides[current].classList.remove("active");
+            dots[current].classList.remove("active");
 
-// Автоматаар сольж ажиллах (Tesla шиг)
-setInterval(() => {
-    let next = (currentSlide + 1) % slides.length;
-    showSlide(next);
-}, 4000);
-</script>
+            current = n;
+
+            slides[current].classList.add("active");
+            dots[current].classList.add("active");
+        }
+
+        // Автомат солигдох (4 секунд тутам)
+        setInterval(() => {
+            let next = (current + 1) % slides.length;
+            showSlide(next);
+        }, 4000);
+    </script>
 
 </body>
 </html>
