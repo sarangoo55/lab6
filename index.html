@@ -1,194 +1,217 @@
 <!DOCTYPE html>
 <html lang="mn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tesla Clone</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tesla Clone — Hero with 3 slides</title>
   <style>
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
+    /* basic reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:Inter, Arial, sans-serif;color:#111}
+    body{background:#fff}
 
-body {
-    background: #fff;
-}
+    /* header (simple) */
+    header{position:fixed;left:0;right:0;top:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;z-index:60;background:rgba(255,255,255,0.6);backdrop-filter:blur(6px)}
+    .logo{font-weight:700;letter-spacing:3px}
 
-/* NAVBAR */
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 70px;
-    background: transparent;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
-    z-index: 100;
-}
+    /* HERO wrapper */
+    .hero-wrap{margin-top:64px; position:relative; width:100%; height:100vh; overflow:hidden}
 
-.logo {
-    font-size: 28px;
-    font-weight: bold;
-    letter-spacing: 8px;
-}
+    /* slides container - horizontal slider */
+    .slides{
+      display:flex;
+      width:300%;
+      height:100%;
+      transition:transform .75s cubic-bezier(.2,.95,.2,1);
+    }
 
-.menu {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-    font-size: 16px;
-}
+    .slide{
+      width:100%;
+      height:100%;
+      position:relative;
+      flex:0 0 100%;
+    }
 
-.icons span {
-    font-size: 20px;
-    margin-left: 15px;
-    cursor: pointer;
-}
+    .slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
 
-/* HERO SECTION */
-.hero {
-    height: 100vh;
-    background-image: url('Homepage-Promo-Meet-Model-3-Tablet.avif');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    /* dark overlay for readability */
+    .slide::after{
+      content:""; position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.55) 100%);
+      pointer-events:none;
+    }
 
-.hero-content {
-    text-align: center;
-    margin-top: 80px;
-}
+    /* caption centered */
+    .caption{
+      position:absolute; left:50%; transform:translateX(-50%);
+      top:12%; text-align:center; color:#fff; z-index:20; width:90%; max-width:920px;
+    }
+    .caption h1{font-size:64px; margin-bottom:18px; font-weight:700; letter-spacing:-1px}
+    .caption .cta{display:inline-flex; gap:12px}
+    .btn{padding:11px 22px;border-radius:8px;border:0;font-weight:600;cursor:pointer}
+    .btn.primary{background:#3b64ff;color:#fff}
+    .btn.ghost{background:rgba(255,255,255,0.95);color:#111}
 
-.hero h1 {
-    font-size: 64px;
-    color: white;
-    margin-bottom: 20px;
-}
+    /* arrows */
+    .arrow{
+      position:absolute; top:50%; transform:translateY(-50%); z-index:30;
+      width:52px;height:52px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+      background:rgba(255,255,255,0.9); box-shadow:0 6px 18px rgba(2,6,23,0.08); cursor:pointer; user-select:none;
+      font-size:20px;
+    }
+    .arrow.left{left:18px}
+    .arrow.right{right:18px}
 
-.buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
+    /* dots under middle bottom */
+    .dots{
+      position:absolute; left:50%; transform:translateX(-50%);
+      bottom:28px; display:flex; gap:10px; z-index:30;
+    }
+    .dots button{
+      width:10px;height:10px;border-radius:50%;border:0;background:rgba(255,255,255,0.55);cursor:pointer;
+      transition:all .18s;
+    }
+    .dots button.active{width:12px;height:12px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.18)}
 
-.btn {
-    padding: 12px 35px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-}
-
-.blue {
-    background: #3b64ff;
-    color: white;
-}
-
-.white {
-    background: white;
-    border: 2px solid #ddd;
-}
-
-/* SECTIONS */
-.cards {
-    margin-top: 50px;
-    padding: 40px;
-    display: flex;
-    gap: 40px;
-    overflow-x: auto;
-}
-
-.card {
-    min-width: 600px;
-    border-radius: 20px;
-    overflow: hidden;
-    position: relative;
-}
-
-.card img {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-}
-
-.info {
-    position: absolute;
-    bottom: 40px;
-    left: 40px;
-    color: white;
-}
-
-.info h2 {
-    font-size: 40px;
-}
-
-.info p {
-    font-size: 18px;
-    margin: 10px 0 20px;
-}
-
+    /* responsive sizes */
+    @media (max-width:900px){
+      .caption h1{font-size:46px}
+      .arrow{width:44px;height:44px}
+    }
+    @media (max-width:520px){
+      .caption h1{font-size:28px; top:10%}
+      .btn{padding:9px 12px;font-size:14px}
+    }
   </style>
 </head>
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="logo">TESLA</div>
-        <ul class="menu">
-            <li>Vehicles</li>
-            <li>Energy</li>
-            <li>Charging</li>
-            <li>Discover</li>
-            <li>Shop</li>
-        </ul>
-        <div class="icons">
-            <span>❓</span>
-            <span>🌐</span>
-            <span>👤</span>
-        </div>
-    </nav>
+  <header>
+    <div class="logo">TESLA</div>
+    <nav aria-hidden="true">Vehicles • Energy • Charging • Discover • Shop</nav>
+    <div aria-hidden="true">🌐 👤</div>
+  </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Model Y</h1>
-            <div class="buttons">
-                <button class="btn blue">Order Now</button>
-                <button class="btn white">Learn More</button>
-            </div>
+  <main>
+    <section class="hero-wrap" id="hero">
+      <div class="slides" id="slides">
+        <!-- slide 0 -->
+        <div class="slide">
+          <img src="Homepage-Card-Model-Y-Tablet-US-v2.avif" alt="Model Y - slide 1">
         </div>
+
+        <!-- slide 1 -->
+        <div class="slide">
+          <img src="Homepage-Card-Model-3-Tablet-US-v2.avif" alt="Model 3 - slide 2">
+        </div>
+
+        <!-- slide 2 -->
+        <div class="slide">
+          <img src="Homepage-Promo-Meet-Model-Y-Tablet.avif" alt="Model X - slide 3">
+        </div>
+      </div>
+
+      <!-- caption (keeps same text, sits above slides) -->
+      <div class="caption" aria-hidden="false">
+        <h1>Model Y</h1>
+        <div class="cta">
+          <button class="btn primary">Order Now</button>
+          <button class="btn ghost">Learn More</button>
+        </div>
+      </div>
+
+      <!-- arrows -->
+      <div class="arrow left" id="prev" role="button" aria-label="Previous">❮</div>
+      <div class="arrow right" id="next" role="button" aria-label="Next">❯</div>
+
+      <!-- dots -->
+      <div class="dots" id="dots"></div>
     </section>
+  </main>
 
-    <!-- SECTIONS LIKE TESLA -->
-    <section class="cards">
-        <div class="card middle">
-            <img src="https://tesla-cdn.thron.com/delivery/public/image/tesla/17d.../tesla" alt="">
-            <div class="info">
-                <h2>Model Y</h2>
-                <p>1.99% APR Ending December 4</p>
-                <div class="buttons">
-                    <button class="btn blue">Order Now</button>
-                    <button class="btn white">Learn More</button>
-                </div>
-            </div>
-        </div>
+  <script>
+    (function(){
+      const slidesEl = document.getElementById('slides');
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const prevBtn = document.getElementById('prev');
+      const nextBtn = document.getElementById('next');
+      const dotsWrap = document.getElementById('dots');
+      const hero = document.getElementById('hero');
 
-        <div class="card">
-            <img src="https://tesla-cdn.thron.com/delivery/public/image/tesla/cybertruck" alt="">
-            <div class="info">
-                <h2>Cybertruck</h2>
-                <p>2.49% APR Ending</p>
-                <button class="btn blue">Order Now</button>
-            </div>
-        </div>
-    </section>
+      let index = 0;
+      const COUNT = slides.length;
+      const AUTOPLAY = true;
+      const INTERVAL = 4000;
+      let timer = null;
 
+      // create dots
+      for(let i=0;i<COUNT;i++){
+        const b = document.createElement('button');
+        b.dataset.index = i;
+        if(i===0) b.classList.add('active');
+        b.addEventListener('click', (e)=> {
+          goTo(parseInt(e.currentTarget.dataset.index,10));
+        });
+        dotsWrap.appendChild(b);
+      }
+      const dots = Array.from(dotsWrap.children);
+
+      function update(){
+        slidesEl.style.transform = `translateX(${-index * 100}%)`;
+        dots.forEach(d=>d.classList.remove('active'));
+        dots[index]?.classList.add('active');
+      }
+
+      function next(){
+        index = (index + 1) % COUNT;
+        update();
+      }
+      function prev(){
+        index = (index - 1 + COUNT) % COUNT;
+        update();
+      }
+      function goTo(i){
+        index = i % COUNT;
+        update();
+        restartAutoplay();
+      }
+
+      nextBtn.addEventListener('click', ()=>{ next(); restartAutoplay(); });
+      prevBtn.addEventListener('click', ()=>{ prev(); restartAutoplay(); });
+
+      // keyboard navigation
+      window.addEventListener('keydown', (e)=>{
+        if(e.key === 'ArrowRight') { next(); restartAutoplay(); }
+        if(e.key === 'ArrowLeft') { prev(); restartAutoplay(); }
+      });
+
+      // autoplay controls
+      function startAutoplay(){
+        if(!AUTOPLAY) return;
+        stopAutoplay();
+        timer = setInterval(()=>{ next(); }, INTERVAL);
+      }
+      function stopAutoplay(){ if(timer) { clearInterval(timer); timer = null; } }
+      function restartAutoplay(){ stopAutoplay(); startAutoplay(); }
+
+      // pause on hover/touch
+      hero.addEventListener('mouseenter', ()=> stopAutoplay());
+      hero.addEventListener('mouseleave', ()=> startAutoplay());
+      hero.addEventListener('touchstart', ()=> stopAutoplay(), {passive:true});
+      hero.addEventListener('touchend', ()=> startAutoplay(), {passive:true});
+
+      // init
+      update();
+      startAutoplay();
+
+      // expose for debug
+      window.heroSlider = { goTo, next, prev, startAutoplay, stopAutoplay };
+    })();
+  </script>
 </body>
 </html>
