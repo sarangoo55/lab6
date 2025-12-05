@@ -1,145 +1,188 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tesla Clone</title>
 
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
 
-        /* ==== NAVBAR ==== */
+        body { background: #000; color: #fff; }
+
+        /* ---------------- NAVBAR ---------------- */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            height: 60px;
-            background: transparent;
+            padding: 20px 40px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 0 40px;
-            z-index: 10;
-            color: white;
-            font-size: 18px;
-            font-weight: 500;
-        }
-
-        .nav-left {
-            font-size: 24px;
-            letter-spacing: 2px;
-        }
-
-        .nav-right {
-            display: flex;
-            gap: 20px;
+            align-items: center;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
             font-size: 22px;
-            cursor: pointer;
         }
 
-        /* ==== SLIDER WRAPPER ==== */
-        .slider {
+        .navbar .logo { font-size: 25px; font-weight: bold; }
+
+        /* ---------------- CAROUSEL WRAPPER ---------------- */
+        .section {
+            height: 100vh;
+            width: 100%;
             position: relative;
-            width: 100%;
-            max-width: 1400px;
-            height: 650px;
-            margin: 80px auto 0;
             overflow: hidden;
-            border-radius: 10px;
         }
 
-        /* ==== SLIDES ==== */
-        .slide {
-            position: absolute;
-            width: 100%;
+        .carousel {
             height: 100%;
+            width: 300%;
+            display: flex;
+            transition: transform 0.7s ease-in-out;
+        }
+
+        .carousel img {
+            width: 100vw;
+            height: 100vh;
             object-fit: cover;
-            object-position: center;
-            opacity: 0;
-            transition: opacity 0.7s ease-in-out;
         }
 
-        .slide.active {
-            opacity: 1;
-        }
-
-        /* ==== DOTS ==== */
+        /* ---------------- DOTS ---------------- */
         .dots {
             position: absolute;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: 40px;
+            width: 100%;
             display: flex;
-            gap: 12px;
+            justify-content: center;
+            gap: 10px;
         }
 
         .dot {
             width: 12px;
             height: 12px;
-            background: #d0d0d0;
             border-radius: 50%;
+            background: rgba(255,255,255,0.4);
             cursor: pointer;
             transition: 0.3s;
         }
 
         .dot.active {
             background: white;
-        }
-      
-        @media (max-width: 900px) {
-            .slider { height: 450px; }
+            transform: scale(1.3);
         }
 
-        @media (max-width: 600px) {
-            .slider { height: 320px; }
+        /* SECTION TITLE */
+        .model-title {
+            position: absolute;
+            top: 120px;
+            width: 100%;
+            text-align: center;
+            font-size: 48px;
+            font-weight: bold;
         }
     </style>
 </head>
-
 <body>
 
-    <!-- ==== NAVIGATION ==== -->
-    <div class="navbar">
-        <div class="nav-left">TESLA</div>
-        <nav aria-hidden="true">Vehicles  Energy  Charging  Discover  Shop</nav>
-        <div aria-hidden="true">🌐 👤</div>
+<!-- ---------------- NAVBAR ---------------- -->
+<div class="navbar">
+    <div class="logo">&gt;🌐 👤&lt;</div>
+</div>
+
+<!-- ---------------- MODEL Y (Top section) ---------------- -->
+<div class="section" id="section1">
+    <h1 class="model-title">Model Y</h1>
+    <div class="carousel">
+        <img src="Homepage-Card-Model-Y-Tablet-US-v2.avif">
+        <img src="Homepage-Card-Model-3-Tablet-US-v2.avif">
+        <img src="Homepage-Promo-Meet-Model-Y-Tablet.avif">
     </div>
+    <div class="dots"></div>
+</div>
 
-    <!-- ==== SLIDER ==== -->
-    <div class="slider">
-        <img src="images/Homepage-Card-Model-Y-Tablet-US-v2.avif" class="slide active">
-        <img src="images/Homepage-Card-Model-3-Tablet-US-v2.avif" class="slide">
-        <img src="images/Homepage-Promo-Meet-Model-Y-Tablet.avif" class="slide">
-
-        <div class="dots">
-            <span class="dot active" onclick="showSlide(0)"></span>
-            <span class="dot" onclick="showSlide(1)"></span>
-            <span class="dot" onclick="showSlide(2)"></span>
-        </div>
+<!-- ---------------- MODEL 3 ---------------- -->
+<div class="section" id="section2">
+    <h1 class="model-title">Model 3</h1>
+    <div class="carousel">
+        <img src="Homepage-Card-Model-3-Tablet-US-v2.avif">
     </div>
+    <div class="dots"></div>
+</div>
 
-    <!-- ==== JAVASCRIPT ==== -->
-    <script>
-        let current = 0;
-        const slides = document.querySelectorAll(".slide");
-        const dots = document.querySelectorAll(".dot");
+<!-- ---------------- MODEL Y ---------------- -->
+<div class="section" id="section3">
+    <h1 class="model-title">Model Y</h1>
+    <div class="carousel">
+        <img src="Homepage-Card-Model-Y-Tablet-US-v2.avif">
+    </div>
+    <div class="dots"></div>
+</div>
 
-        function showSlide(n) {
-            slides[current].classList.remove("active");
-            dots[current].classList.remove("active");
+<!-- ---------------- CYBERTRUCK ---------------- -->
+<div class="section" id="section4">
+    <h1 class="model-title">Cybertruck</h1>
+    <div class="carousel">
+        <img src="Homepage-Promo-Cybertruck-Tablet-US-v2.avif">
+    </div>
+    <div class="dots"></div>
+</div>
 
-            current = n;
+<!-- ---------------- MODEL X ---------------- -->
+<div class="section" id="section5">
+    <h1 class="model-title">Model X</h1>
+    <div class="carousel">
+        <img src="Homepage-Promo-Meet-Model-3-Tablet.avif">
+    </div>
+    <div class="dots"></div>
+</div>
 
-            slides[current].classList.add("active");
-            dots[current].classList.add("active");
+<!-- ---------------- MODEL S ---------------- -->
+<div class="section" id="section6">
+    <h1 class="model-title">Model S</h1>
+    <div class="carousel">
+        <img src="Homepage-Promo-Meet-Model-Y-Tablet.avif">
+    </div>
+    <div class="dots"></div>
+</div>
+
+<script>
+    document.querySelectorAll(".section").forEach(section => {
+        
+        const carousel = section.querySelector(".carousel");
+        const dotsContainer = section.querySelector(".dots");
+        const images = carousel.querySelectorAll("img");
+
+        let index = 0;
+
+        // dots үүсгэх
+        images.forEach((_, i) => {
+            const dot = document.createElement("div");
+            dot.classList.add("dot");
+            if (i === 0) dot.classList.add("active");
+            dot.addEventListener("click", () => {
+                index = i;
+                updateCarousel();
+            });
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = dotsContainer.querySelectorAll(".dot");
+
+        function updateCarousel() {
+            carousel.style.transform = `translateX(${-index * 100}vw)`;
+            dots.forEach(d => d.classList.remove("active"));
+            dots[index].classList.add("active");
         }
 
-        // Автомат солигдох (4 секунд тутам)
+        // автомат гүйх
         setInterval(() => {
-            let next = (current + 1) % slides.length;
-            showSlide(next);
+            index = (index + 1) % images.length;
+            updateCarousel();
         }, 4000);
-    </script>
+
+    });
+</script>
 
 </body>
 </html>
