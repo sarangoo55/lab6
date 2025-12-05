@@ -18,65 +18,52 @@
     .hero-wrap{margin-top:64px; position:relative; width:100%; height:100vh; overflow:hidden}
 
     /* slides container - horizontal slider */
-    .slides{
-      display:flex;
-      width:300%;
-      height:100%;
-      transition:transform .75s cubic-bezier(.2,.95,.2,1);
-    }
+    .slider {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+}
 
-    .slide{
-      width:100%;
-      height:100%;
-      position:relative;
-      flex:0 0 100%;
-    }
+.slides {
+    width: 100%;
+    height: 100%;
+}
 
-    .slide img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+}
 
-    /* dark overlay for readability */
-    .slide::after{
-      content:""; position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.55) 100%);
-      pointer-events:none;
-    }
+.slide.active {
+    opacity: 1;
+}
 
-    /* caption centered */
-    .caption{
-      position:absolute; left:50%; transform:translateX(-50%);
-      top:12%; text-align:center; color:#fff; z-index:20; width:90%; max-width:920px;
-    }
-    .caption h1{font-size:64px; margin-bottom:18px; font-weight:700; letter-spacing:-1px}
-    .caption .cta{display:inline-flex; gap:12px}
-    .btn{padding:11px 22px;border-radius:8px;border:0;font-weight:600;cursor:pointer}
-    .btn.primary{background:#3b64ff;color:#fff}
-    .btn.ghost{background:rgba(255,255,255,0.95);color:#111}
+.dots {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+}
 
-    /* arrows */
-    .arrow{
-      position:absolute; top:50%; transform:translateY(-50%); z-index:30;
-      width:52px;height:52px;border-radius:8px;display:flex;align-items:center;justify-content:center;
-      background:rgba(255,255,255,0.9); box-shadow:0 6px 18px rgba(2,6,23,0.08); cursor:pointer; user-select:none;
-      font-size:20px;
-    }
-    .arrow.left{left:18px}
-    .arrow.right{right:18px}
+.dot {
+    width: 12px;
+    height: 12px;
+    background: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-    /* dots under middle bottom */
-    .dots{
-      position:absolute; left:50%; transform:translateX(-50%);
-      bottom:28px; display:flex; gap:10px; z-index:30;
-    }
-    .dots button{
-      width:10px;height:10px;border-radius:50%;border:0;background:rgba(255,255,255,0.55);cursor:pointer;
-      transition:all .18s;
-    }
-    .dots button.active{width:12px;height:12px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.18)}
+.dot.active {
+    background: white;
+}
 
     /* responsive sizes */
     @media (max-width:900px){
@@ -99,22 +86,12 @@
 
   <main>
     <section class="hero-wrap" id="hero">
-      <div class="slides" id="slides">
-        <!-- slide 0 -->
-        <div class="slide">
-          <img src="Homepage-Card-Model-Y-Tablet-US-v2.avif" alt="Model Y - slide 1">
-        </div>
-
-        <!-- slide 1 -->
-        <div class="slide">
-          <img src="Homepage-Card-Model-3-Tablet-US-v2.avif" alt="Model 3 - slide 2">
-        </div>
-
-        <!-- slide 2 -->
-        <div class="slide">
-          <img src="Homepage-Promo-Meet-Model-Y-Tablet.avif" alt="Model X - slide 3">
-        </div>
-      </div>
+     <div class="slider">
+        <div class="slides">
+           <img src="images/Homepage-Card-Model-Y-Tablet-US-v2.avif" class="slide active">
+           <img src="images/Homepage-Card-Model-3-Tablet-US-v2.avif" class="slide">
+           <img src="images/Homepage-Promo-Meet-Model-Y-Tablet.avif" class="slide">
+     </div>
 
       <!-- caption (keeps same text, sits above slides) -->
       <div class="caption" aria-hidden="false">
@@ -130,88 +107,36 @@
       <div class="arrow right" id="next" role="button" aria-label="Next">❯</div>
 
       <!-- dots -->
-      <div class="dots" id="dots"></div>
+         <div class="dots">
+        <span class="dot active" onclick="showSlide(0)"></span>
+        <span class="dot" onclick="showSlide(1)"></span>
+        <span class="dot" onclick="showSlide(2)"></span>
+    </div>
+</div>
     </section>
   </main>
 
   <script>
-    (function(){
-      const slidesEl = document.getElementById('slides');
-      const slides = Array.from(document.querySelectorAll('.slide'));
-      const prevBtn = document.getElementById('prev');
-      const nextBtn = document.getElementById('next');
-      const dotsWrap = document.getElementById('dots');
-      const hero = document.getElementById('hero');
+let currentSlide = 0;
+const slides = document.querySelectorAll(".slide");
+const dots = document.querySelectorAll(".dot");
 
-      let index = 0;
-      const COUNT = slides.length;
-      const AUTOPLAY = true;
-      const INTERVAL = 4000;
-      let timer = null;
+function showSlide(n) {
+    slides[currentSlide].classList.remove("active");
+    dots[currentSlide].classList.remove("active");
 
-      // create dots
-      for(let i=0;i<COUNT;i++){
-        const b = document.createElement('button');
-        b.dataset.index = i;
-        if(i===0) b.classList.add('active');
-        b.addEventListener('click', (e)=> {
-          goTo(parseInt(e.currentTarget.dataset.index,10));
-        });
-        dotsWrap.appendChild(b);
-      }
-      const dots = Array.from(dotsWrap.children);
+    currentSlide = n;
 
-      function update(){
-        slidesEl.style.transform = `translateX(${-index * 100}%)`;
-        dots.forEach(d=>d.classList.remove('active'));
-        dots[index]?.classList.add('active');
-      }
+    slides[currentSlide].classList.add("active");
+    dots[currentSlide].classList.add("active");
+}
 
-      function next(){
-        index = (index + 1) % COUNT;
-        update();
-      }
-      function prev(){
-        index = (index - 1 + COUNT) % COUNT;
-        update();
-      }
-      function goTo(i){
-        index = i % COUNT;
-        update();
-        restartAutoplay();
-      }
+// Автоматаар сольж ажиллах (Tesla шиг)
+setInterval(() => {
+    let next = (currentSlide + 1) % slides.length;
+    showSlide(next);
+}, 4000);
+</script>
 
-      nextBtn.addEventListener('click', ()=>{ next(); restartAutoplay(); });
-      prevBtn.addEventListener('click', ()=>{ prev(); restartAutoplay(); });
-
-      // keyboard navigation
-      window.addEventListener('keydown', (e)=>{
-        if(e.key === 'ArrowRight') { next(); restartAutoplay(); }
-        if(e.key === 'ArrowLeft') { prev(); restartAutoplay(); }
-      });
-
-      // autoplay controls
-      function startAutoplay(){
-        if(!AUTOPLAY) return;
-        stopAutoplay();
-        timer = setInterval(()=>{ next(); }, INTERVAL);
-      }
-      function stopAutoplay(){ if(timer) { clearInterval(timer); timer = null; } }
-      function restartAutoplay(){ stopAutoplay(); startAutoplay(); }
-
-      // pause on hover/touch
-      hero.addEventListener('mouseenter', ()=> stopAutoplay());
-      hero.addEventListener('mouseleave', ()=> startAutoplay());
-      hero.addEventListener('touchstart', ()=> stopAutoplay(), {passive:true});
-      hero.addEventListener('touchend', ()=> startAutoplay(), {passive:true});
-
-      // init
-      update();
-      startAutoplay();
-
-      // expose for debug
-      window.heroSlider = { goTo, next, prev, startAutoplay, stopAutoplay };
-    })();
-  </script>
 </body>
 </html>
