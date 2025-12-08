@@ -3,186 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tesla Clone</title>
-
+    <title>Tesla Clone - Model Y</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-        body { background: #000; color: #fff; }
+body {
+    overflow-x: hidden;
+}
 
-        /* ---------------- NAVBAR ---------------- */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            font-size: 22px;
-        }
+/* HEADER */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    z-index: 10;
+    backdrop-filter: blur(8px);
+}
 
-        .navbar .logo { font-size: 25px; font-weight: bold; }
+.logo {
+    font-size: 22px;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
 
-        /* ---------------- CAROUSEL WRAPPER ---------------- */
-        .section {
-            height: 100vh;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-        }
+.nav-links a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+}
 
-        .carousel {
-            height: 100%;
-            width: 300%;
-            display: flex;
-            transition: transform 0.7s ease-in-out;
-        }
+/* HERO BACKGROUND */
+.hero {
+    height: 100vh;
+    width: 100%;
+    background-image: url('img1.avif'); /* 1-р зураг */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-        .carousel img {
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-        }
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 100px;
+    text-align: center;
 
-        /* ---------------- DOTS ---------------- */
-        .dots {
-            position: absolute;
-            bottom: 40px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
+    animation: slide 15s infinite;
+}
 
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.4);
-            cursor: pointer;
-            transition: 0.3s;
-        }
+/* SLIDES — 3 зураг */
+@keyframes slide {
+    0% { background-image: url('Homepage-Card-Model-Y-Tablet-US-v2.avif'); }
+    33% { background-image: url('Homepage-Card-Model-3-Tablet-US-v2.avif'); }
+    66% { background-image: url('Homepage-Promo-Meet-Model-Y-Tablet.avif'); }
+    100% { background-image: url('Homepage-Card-Model-Y-Tablet-US-v2.avif'); }
+}
 
-        .dot.active {
-            background: white;
-            transform: scale(1.3);
-        }
+/* TEXT */
+.text-box h1 {
+    font-size: 55px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 20px;
+}
 
-        /* SECTION TITLE */
-        .model-title {
-            position: absolute;
-            top: 120px;
-            width: 100%;
-            text-align: center;
-            font-size: 48px;
-            font-weight: bold;
-        }
+/* BUTTONS */
+.btn-box {
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    padding: 12px 40px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.dark {
+    background: black;
+    color: white;
+}
+
+.light {
+    background: white;
+    color: black;
+    border: 2px solid black;
+}
+
     </style>
 </head>
 <body>
 
-<!-- ---------------- NAVBAR ---------------- -->
-<div class="navbar">
-    <div class="logo">&gt;🌐 👤&lt;</div>
-</div>
+    <!-- HEADER -->
+    <header class="navbar">
+        <div class="logo">TESLA</div>
+        <nav class="nav-links">
+            <a href="#">Vehicles</a>
+            <a href="#">Energy</a>
+            <a href="#">Charging</a>
+            <a href="#">Shop</a>
+            <a href="#">Account</a>
+        </nav>
+    </header>
 
-<!-- ---------------- MODEL Y (Top section) ---------------- -->
-<div class="section" id="section1">
-    <h1 class="model-title">Model Y</h1>
-    <div class="carousel">
-        <img src="Homepage-Card-Model-Y-Tablet-US-v2.avif">
-        <img src="Homepage-Card-Model-3-Tablet-US-v2.avif">
-        <img src="Homepage-Promo-Meet-Model-Y-Tablet.avif">
-    </div>
-    <div class="dots"></div>
-</div>
+    <!-- HERO MODEL Y -->
+    <section class="hero">
 
-<!-- ---------------- MODEL 3 ---------------- -->
-<div class="section" id="section2">
-    <h1 class="model-title">Model 3</h1>
-    <div class="carousel">
-        <img src="Homepage-Card-Model-3-Tablet-US-v2.avif">
-    </div>
-    <div class="dots"></div>
-</div>
+        <div class="text-box">
+            <h1>Model Y</h1>
+        </div>
 
-<!-- ---------------- MODEL Y ---------------- -->
-<div class="section" id="section3">
-    <h1 class="model-title">Model Y</h1>
-    <div class="carousel">
-        <img src="Homepage-Card-Model-Y-Tablet-US-v2.avif">
-    </div>
-    <div class="dots"></div>
-</div>
+        <div class="btn-box">
+            <a href="#" class="btn dark">Order Now</a>
+            <a href="#" class="btn light">Learn More</a>
+        </div>
 
-<!-- ---------------- CYBERTRUCK ---------------- -->
-<div class="section" id="section4">
-    <h1 class="model-title">Cybertruck</h1>
-    <div class="carousel">
-        <img src="Homepage-Promo-Cybertruck-Tablet-US-v2.avif">
-    </div>
-    <div class="dots"></div>
-</div>
-
-<!-- ---------------- MODEL X ---------------- -->
-<div class="section" id="section5">
-    <h1 class="model-title">Model X</h1>
-    <div class="carousel">
-        <img src="Homepage-Promo-Meet-Model-3-Tablet.avif">
-    </div>
-    <div class="dots"></div>
-</div>
-
-<!-- ---------------- MODEL S ---------------- -->
-<div class="section" id="section6">
-    <h1 class="model-title">Model S</h1>
-    <div class="carousel">
-        <img src="Homepage-Promo-Meet-Model-Y-Tablet.avif">
-    </div>
-    <div class="dots"></div>
-</div>
-
-<script>
-    document.querySelectorAll(".section").forEach(section => {
-        
-        const carousel = section.querySelector(".carousel");
-        const dotsContainer = section.querySelector(".dots");
-        const images = carousel.querySelectorAll("img");
-
-        let index = 0;
-
-        // dots үүсгэх
-        images.forEach((_, i) => {
-            const dot = document.createElement("div");
-            dot.classList.add("dot");
-            if (i === 0) dot.classList.add("active");
-            dot.addEventListener("click", () => {
-                index = i;
-                updateCarousel();
-            });
-            dotsContainer.appendChild(dot);
-        });
-
-        const dots = dotsContainer.querySelectorAll(".dot");
-
-        function updateCarousel() {
-            carousel.style.transform = `translateX(${-index * 100}vw)`;
-            dots.forEach(d => d.classList.remove("active"));
-            dots[index].classList.add("active");
-        }
-
-        // автомат гүйх
-        setInterval(() => {
-            index = (index + 1) % images.length;
-            updateCarousel();
-        }, 4000);
-
-    });
-</script>
+    </section>
 
 </body>
 </html>
