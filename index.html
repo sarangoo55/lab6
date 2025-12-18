@@ -48,6 +48,81 @@
         </div>
     </section>
 
+    <section class="product-slider-section">
+    <div class="product-grid">
+        <div class="product-card" style="background-image: url('model-y.jpg');">
+            <div class="card-overlay">
+                <span class="category-tag">Midsize SUV</span>
+                <div class="card-bottom">
+                    <h2>Model Y</h2>
+                    <p>As Low as 0% APR Available</p>
+                    <div class="card-btns">
+                        <button class="btn-blue">Order Now</button>
+                        <button class="btn-white">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card main-card" style="background-image: url('model-3.jpg');">
+            <div class="card-overlay">
+                <span class="category-tag">Sport Sedan</span>
+                <div class="card-bottom">
+                    <h2>Model 3</h2>
+                    <p>2.99% APR Available</p>
+                    <div class="card-btns">
+                        <button class="btn-blue">Order Now</button>
+                        <button class="btn-white">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card" style="background-image: url('cybertruck.jpg');">
+            <div class="card-overlay">
+                <span class="category-tag">Utility Truck</span>
+                <div class="card-bottom">
+                    <img src="cybertruck-logo.png" alt="Cybertruck" class="logo-img">
+                    <p>3.99% APR Available</p>
+                    <div class="card-btns">
+                        <button class="btn-blue">Order Now</button>
+                        <button class="btn-white">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="slider-dots">
+        <span class="dot"></span>
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+</section>
+
+<section class="promo-section">
+    <div class="promo-grid">
+        <div class="promo-box">
+            <div class="promo-text">
+                <h3>Current Offers</h3>
+                <p>Explore limited-time offers on Tesla vehicles.</p>
+                <button class="btn-simple">Learn More</button>
+            </div>
+            <img src="offers-car.jpg" alt="Offers">
+        </div>
+        <div class="promo-box">
+            <div class="promo-text">
+                <h3>American Heroes</h3>
+                <p>$500 off for military, first responders, etc.</p>
+                <button class="btn-simple">Learn More</button>
+            </div>
+            <img src="hero-car.jpg" alt="Heroes">
+        </div>
+    </div>
+</section>
+
     <section class="promo-section">
         <div class="promo-grid">
             <div class="promo-box">
@@ -156,6 +231,127 @@
 }
 .dot { height: 8px; width: 8px; background: #888; border-radius: 50%; }
 .dot.active { background: #333; }
+
+/* Бүтээгдэхүүний Grid */
+.product-slider-section {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.product-grid {
+    display: flex;
+    gap: 15px;
+    height: 500px;
+    align-items: center;
+}
+
+.product-card {
+    flex: 1; /* Бүх карт адил хэмжээтэй */
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: flex 0.5s ease;
+}
+
+/* Зураг 3 дээрх шиг төвийн картыг арай том болгох бол: */
+.main-card {
+    flex: 1.5; 
+}
+
+.card-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+    height: 100%;
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.category-tag {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.card-bottom h2 {
+    color: white;
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+.card-bottom p {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.card-btns {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-blue {
+    background-color: #3e6ae1;
+    color: white;
+    border: none;
+    padding: 8px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-white {
+    background-color: white;
+    color: #171a20;
+    border: none;
+    padding: 8px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Слайдерын цэгүүд */
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: #e2e2e2;
+    border-radius: 50%;
+}
+
+.dot.active {
+    background-color: #393c41;
+}
+
+/* Promo Boxes (Доод талын хэсэг) */
+.promo-grid {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.promo-box {
+    flex: 1;
+    background: #f4f4f4;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+}
+
+.promo-box img {
+    width: 45%;
+    border-radius: 8px;
+}
 
 /* PROMO GRID (Зураг 2) */
 .promo-section { padding: 40px 20px; }
