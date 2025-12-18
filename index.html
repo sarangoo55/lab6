@@ -9,12 +9,31 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Inter', sans-serif; color: #111; background:#fff; }
 
-    header {
-      height: 100vh;
-      background: url('hero.jpg') center/cover no-repeat;
-      position: relative;
-      color: white;
-    }
+    /* ===== HEADER ===== */
+    .hero-slider{ height:100vh; position:relative; overflow:hidden; }
+.hero-slides{ display:flex; width:300%; height:100%; transition:transform .8s ease; }
+.hero{
+  min-width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:white;
+}
+.hero h1{ font-size:56px; margin-bottom:20px; }
+
+#h1:checked ~ .hero-slides{ transform:translateX(0); }
+#h2:checked ~ .hero-slides{ transform:translateX(-100%); }
+#h3:checked ~ .hero-slides{ transform:translateX(-200%); }
+
+.hero-dots{ position:absolute; bottom:40px; width:100%; }
+
+#h1:checked ~ .hero-dots label:nth-child(1),
+#h2:checked ~ .hero-dots label:nth-child(2),
+#h3:checked ~ .hero-dots label:nth-child(3){ background:white; }
     header::after{
       content:"";
       position:absolute; inset:0;
@@ -53,6 +72,7 @@
     .btn.primary{ background:#3b5cff; color:white; }
     .btn.secondary{ background:white; color:#111; }
 
+    /* ===== VEHICLE SLIDER ===== */
     .vehicles{
       padding:80px 60px;
     }
@@ -100,6 +120,7 @@
     }
     .vehicle-info h2{ font-size:42px; margin-bottom:10px; }
 
+    /* ===== OFFERS ===== */
     .offers{
       padding:60px;
       display:grid;
@@ -116,6 +137,7 @@
     }
     .offer h3{ font-size:28px; margin-bottom:10px; }
 
+    /* ===== FEATURES ===== */
     .features{
       padding:80px 60px;
       display:grid;
@@ -145,7 +167,8 @@
 </head>
 <body>
 
-<header>
+<!-- HERO SLIDER -->
+<header class="hero-slider">
   <nav>
     <strong>TESLA</strong>
     <ul>
@@ -156,15 +179,42 @@
     </ul>
   </nav>
 
-  <div class="hero-content">
-    <h1>Model Y</h1>
-    <div class="btn-group">
-      <button class="btn primary">Order Now</button>
-      <button class="btn secondary">Learn More</button>
-    </div>
+  <input type="radio" name="hero" id="h1" checked>
+  <input type="radio" name="hero" id="h2">
+  <input type="radio" name="hero" id="h3">
+
+  <div class="hero-slides">
+    <section class="hero" style="background-image:url('Homepage-Promo-Meet-Model-Y-Tablet.avif')">
+      <h1>Model Y</h1>
+      <div class="btn-group">
+        <button class="btn primary">Order Now</button>
+        <button class="btn secondary">Learn More</button>
+      </div>
+    </section>
+    <section class="hero" style="background-image:url('Homepage-Promo-Meet-Model-3-Tablet.avif')">
+      <h1>Model 3</h1>
+      <div class="btn-group">
+        <button class="btn primary">Order Now</button>
+        <button class="btn secondary">Learn More</button>
+      </div>
+    </section>
+    <section class="hero" style="background-image:url('Homepage-Promo-Cybertruck-Tablet-US-v2.avif')">
+      <h1>Cybertruck</h1>
+      <div class="btn-group">
+        <button class="btn primary">Order Now</button>
+        <button class="btn secondary">Learn More</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="dots hero-dots">
+    <label for="h1"></label>
+    <label for="h2"></label>
+    <label for="h3"></label>
   </div>
 </header>
 
+<!-- VEHICLE SLIDER -->
 <section class="vehicles">
   <div class="slider">
     <input type="radio" name="slide" id="s1" checked>
@@ -173,7 +223,7 @@
 
     <div class="slides">
       <div class="vehicle-card">
-        <img src="Homepage-Promo-Meet-Model-3-Tablet.avif" alt="Model 3">
+        <img src="model3.jpg" alt="Model 3">
         <div class="vehicle-info">
           <h2>Model 3</h2>
           <div class="btn-group">
@@ -183,7 +233,7 @@
         </div>
       </div>
       <div class="vehicle-card">
-        <img src="Homepage-Promo-Meet-Model-Y-Tablet.avif" alt="Model Y">
+        <img src="modely.jpg" alt="Model Y">
         <div class="vehicle-info">
           <h2>Model Y</h2>
         </div>
@@ -205,15 +255,22 @@
 </section>
 
 <script>
+  let currentHero = 1;
+  const totalHero = 3;
+  setInterval(() => {
+    currentHero = currentHero % totalHero + 1;
+    document.getElementById('h' + currentHero).checked = true;
+  }, 5000);
+
   let current = 1;
   const total = 3;
-
   setInterval(() => {
     current = current % total + 1;
     document.getElementById('s' + current).checked = true;
   }, 4000);
 </script>
 
+<!-- OFFERS -->
 <section class="offers">
   <div class="offer">
     <div>
@@ -231,6 +288,7 @@
   </div>
 </section>
 
+<!-- FEATURES -->
 <section class="features">
   <div class="feature">
     <img src="fsd.jpg" alt="FSD">
