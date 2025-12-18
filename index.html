@@ -1,121 +1,254 @@
 <!DOCTYPE html>
-<html lang="mn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Tesla Clone - Flexbox</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tesla Style UI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; color: #111; background:#fff; }
+
+    /* ===== HEADER ===== */
+    header {
+      height: 100vh;
+      background: url('hero.jpg') center/cover no-repeat;
+      position: relative;
+      color: white;
+    }
+    header::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.6));
+    }
+    nav {
+      position: relative;
+      z-index:2;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 60px;
+    }
+    nav ul { display:flex; gap:30px; list-style:none; }
+    nav a { text-decoration:none; color:#000; font-weight:500; }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      height:calc(100% - 80px);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:20px;
+    }
+    .hero-content h1{ font-size:56px; }
+    .btn-group{ display:flex; gap:15px; }
+    .btn{
+      padding:14px 34px;
+      border-radius:6px;
+      font-weight:600;
+      border:none;
+      cursor:pointer;
+    }
+    .btn.primary{ background:#3b5cff; color:white; }
+    .btn.secondary{ background:white; color:#111; }
+
+    /* ===== VEHICLE SLIDER ===== */
+    .vehicles{
+      padding:80px 60px;
+    }
+    .slider{ position:relative; overflow:hidden; }
+    .slides{
+      display:flex;
+      width:300%;
+      transition:transform .6s ease;
+    }
+    .vehicle-card{ min-width:100%; position:relative; border-radius:14px; overflow:hidden; }
+
+    #s1:checked ~ .slides{ transform:translateX(0); }
+    #s2:checked ~ .slides{ transform:translateX(-100%); }
+    #s3:checked ~ .slides{ transform:translateX(-200%); }
+
+    input[type=radio]{ display:none; }
+    .dots{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      margin-top:20px;
+    }
+    .dots label{
+      width:10px; height:10px;
+      background:#ccc;
+      border-radius:50%;
+      cursor:pointer;
+    }
+    #s1:checked ~ .dots label:nth-child(1),
+    #s2:checked ~ .dots label:nth-child(2),
+    #s3:checked ~ .dots label:nth-child(3){
+      background:#111;
+    }
+    .vehicle-card{
+      position:relative;
+      border-radius:14px;
+      overflow:hidden;
+    }
+    .vehicle-card img{ width:100%; display:block; }
+    .vehicle-info{
+      position:absolute;
+      bottom:40px;
+      left:40px;
+      color:white;
+    }
+    .vehicle-info h2{ font-size:42px; margin-bottom:10px; }
+
+    /* ===== OFFERS ===== */
+    .offers{
+      padding:60px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+    }
+    .offer{
+      background:#f5f5f5;
+      border-radius:14px;
+      padding:40px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .offer h3{ font-size:28px; margin-bottom:10px; }
+
+    /* ===== FEATURES ===== */
+    .features{
+      padding:80px 60px;
+      display:grid;
+      grid-template-columns:2fr 1fr;
+      gap:30px;
+    }
+    .feature{
+      position:relative;
+      border-radius:14px;
+      overflow:hidden;
+    }
+    .feature img{ width:100%; height:100%; object-fit:cover; }
+    .feature h2{
+      position:absolute;
+      bottom:30px;
+      left:30px;
+      color:white;
+      font-size:36px;
+    }
+
+    @media(max-width:900px){
+      nav ul{ display:none; }
+      .offers,.features{ grid-template-columns:1fr; }
+      .hero-content h1{ font-size:40px; }
+    }
+  </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">TESLA</div>
-        <div class="menu">
-            <a href="#">Vehicles</a>
-            <a href="#">Energy</a>
-            <a href="#">Charging</a>
-            <a href="#">Discover</a>
-            <a href="#">Shop</a>
+
+<!-- HERO -->
+<header>
+  <nav>
+    <strong>TESLA</strong>
+    <ul>
+      <li><a href="#">Vehicles</a></li>
+      <li><a href="#">Energy</a></li>
+      <li><a href="#">Charging</a></li>
+      <li><a href="#">Shop</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero-content">
+    <h1>Model Y</h1>
+    <div class="btn-group">
+      <button class="btn primary">Order Now</button>
+      <button class="btn secondary">Learn More</button>
+    </div>
+  </div>
+</header>
+
+<!-- VEHICLE SLIDER -->
+<section class="vehicles">
+  <div class="slider">
+    <input type="radio" name="slide" id="s1" checked>
+    <input type="radio" name="slide" id="s2">
+    <input type="radio" name="slide" id="s3">
+
+    <div class="slides">
+      <div class="vehicle-card">
+        <img src="model3.jpg" alt="Model 3">
+        <div class="vehicle-info">
+          <h2>Model 3</h2>
+          <div class="btn-group">
+            <button class="btn primary">Order Now</button>
+            <button class="btn secondary">Learn More</button>
+          </div>
         </div>
-        <div class="icons">
-            <span>🌐</span>
-            <span>👤</span>
+      </div>
+      <div class="vehicle-card">
+        <img src="modely.jpg" alt="Model Y">
+        <div class="vehicle-info">
+          <h2>Model Y</h2>
         </div>
-    </nav>
-
-    <header class="hero">
-        <div class="hero-top">
-            <h1>Model Y</h1>
+      </div>
+      <div class="vehicle-card">
+        <img src="models.jpg" alt="Model S">
+        <div class="vehicle-info">
+          <h2>Model S</h2>
         </div>
-        <div class="hero-bottom">
-            <button class="btn-blue">Order Now</button>
-            <button class="btn-white">Learn More</button>
-        </div>
-    </header>
+      </div>
+    </div>
 
-    <section class="cards-container">
-        <div class="card card-y">
-            <div class="card-text">
-                <p>Midsize SUV</p>
-                <h2>Model Y</h2>
-                <a href="#">As Low as 0% APR Available</a>
-            </div>
-        </div>
-        <div class="card card-3">
-            <div class="card-text">
-                <p>Sport Sedan</p>
-                <h2>Model 3</h2>
-                <a href="#">2.99% APR Available</a>
-            </div>
-        </div>
-    </section>
-    <style>
-       * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
+    <div class="dots">
+      <label for="s1"></label>
+      <label for="s2"></label>
+      <label for="s3"></label>
+    </div>
+  </div>
+</section>
 
-/* Navbar Flex тохиргоо */
-.navbar {
-    display: flex;
-    justify-content: space-between; /* Зүүн, төв, баруун тийш шахах */
-    align-items: center; /* Босоо тэнхлэгийн дагуу голлуулах */
-    padding: 20px 40px;
-    position: fixed;
-    width: 100%;
-}
+<script>
+  let current = 1;
+  const total = 3;
 
-.menu {
-    display: flex;
-    gap: 20px; /* Линкүүд хоорондын зай */
-}
+  setInterval(() => {
+    current = current % total + 1;
+    document.getElementById('s' + current).checked = true;
+  }, 4000);
+</script>
 
-/* Hero Section: Төвд байршуулах */
-.hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column; /* Дээрээс доошоо чиглэлтэй */
-    justify-content: space-between; /* Гарчиг дээр, товчлуур доор */
-    align-items: center;
-    padding: 100px 0 80px 0;
-    background: url('hero-image.jpg') center/cover;
-}
+<!-- OFFERS -->
+<section class="offers">
+  <div class="offer">
+    <div>
+      <h3>Current Offers</h3>
+      <p>Explore limited-time offers on Tesla vehicles.</p>
+    </div>
+    <button class="btn secondary">Learn More</button>
+  </div>
+  <div class="offer">
+    <div>
+      <h3>American Heroes</h3>
+      <p>$500 off for military, teachers & students.</p>
+    </div>
+    <button class="btn secondary">Learn More</button>
+  </div>
+</section>
 
-.hero-bottom {
-    display: flex;
-    gap: 15px; /* Товчлуур хоорондын зай */
-}
+<!-- FEATURES -->
+<section class="features">
+  <div class="feature">
+    <img src="fsd.jpg" alt="FSD">
+    <h2>Full Self‑Driving (Supervised)</h2>
+  </div>
+  <div class="feature">
+    <img src="feature.jpg" alt="Feature">
+    <h2>Features That Come Standard</h2>
+  </div>
+</section>
 
-/* Картуудыг өрөх */
-.cards-container {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-    overflow-x: auto; /* Гар утсан дээр гүйлгэдэг болгох */
-}
-
-.card {
-    flex: 1; /* Бүх карт тэнцүү хэмжээтэй байх */
-    min-width: 45%;
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 40px;
-    border-radius: 8px;
-}
-
-/* Товчлуурын загвар */
-button {
-    padding: 10px 60px;
-    border-radius: 5px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.btn-blue { background: #3d69e1; color: white; }
-.btn-white { background: white; color: #393c41; } 
-    </style>
 </body>
 </html>
