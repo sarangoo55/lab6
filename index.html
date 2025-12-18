@@ -3,128 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tesla вэб сайтын нүүр хуудасны бүрэн дууриалган загвар. 5 бүтээгдэхүүний слайдер.">
-    <title>Tesla.com Clone - Full Slider</title>
+    <title>Tesla Slider Clone</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="logo">TESLA</div>
-        <nav class="nav-links">
-            <a href="#">Vehicles</a>
-            <a href="#">Energy</a>
-            <a href="#">Charging</a>
-            <a href="#">Discover</a>
-            <a href="#">Shop</a>
-        </nav>
-        <div class="nav-right">
-            <span title="Support">?</span>
-            <span title="Region">🌐</span>
-            <span title="Account">👤</span>
-        </div>
-    </header>
-
-    <main class="full-screen-slider">
-        <div class="slides-container">
-            <section class="slide" id="model-y-slide" style="background-image: url('model-y-bg.jpg');">
-                <div class="slide-content">
-                    <p class="category-tag">Midsize SUV</p>
-                    <div class="bottom-info">
-                        <h1>Model Y</h1>
-                        <p class="promo-detail">As Low as 0% APR Available</p>
-                        <div class="action-buttons">
-                            <button class="btn-blue">Order Now</button>
-                            <button class="btn-white">Learn More</button>
-                        </div>
+    <section class="slider-wrapper">
+        <div class="cards-container">
+            <div class="card" id="slide-1" style="background-image: url('model-y.jpg');">
+                <div class="content">
+                    <h1>Model Y</h1>
+                    <p>0% APR Available</p>
+                    <div class="btn-group">
+                        <button class="btn-blue">Order Now</button>
+                        <button class="btn-white">Learn More</button>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <section class="slide" id="model-3-slide" style="background-image: url('model-3-bg.jpg');">
-                <div class="slide-content">
-                    <p class="category-tag">Sport Sedan</p>
-                    <div class="bottom-info">
-                        <h1>Model 3</h1>
-                        <p class="promo-detail">2.99% APR Available</p>
-                        <div class="action-buttons">
-                            <button class="btn-blue">Order Now</button>
-                            <button class="btn-white">Learn More</button>
-                        </div>
+            <div class="card" id="slide-2" style="background-image: url('model-3.jpg');">
+                <div class="content">
+                    <h1>Model 3</h1>
+                    <p>2.99% APR Available</p>
+                    <div class="btn-group">
+                        <button class="btn-blue">Order Now</button>
+                        <button class="btn-white">Learn More</button>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <section class="slide" id="cybertruck-slide" style="background-image: url('cybertruck-bg.jpg');">
-                <div class="slide-content">
-                    <p class="category-tag">Utility Truck</p>
-                    <div class="bottom-info">
-                        <h1 class="cybertruck-title">CYBERTRUCK</h1>
-                        <p class="promo-detail">3.99% APR Available</p>
-                        <div class="action-buttons">
-                            <button class="btn-blue">Order Now</button>
-                        </div>
+            <div class="card" id="slide-3" style="background-image: url('cybertruck.jpg');">
+                <div class="content">
+                    <h1 class="cyber-font">CYBERTRUCK</h1>
+                    <p>3.99% APR Available</p>
+                    <div class="btn-group">
+                        <button class="btn-blue">Order Now</button>
                     </div>
                 </div>
-            </section>
-
-            <section class="slide" id="model-x-slide" style="background-image: url('model-x-bg.jpg');">
-                <div class="slide-content">
-                    <p class="category-tag">Luxury SUV</p>
-                    <div class="bottom-info">
-                        <h1>Model X</h1>
-                        <p class="promo-detail">3.99% APR Available</p>
-                        <div class="action-buttons">
-                            <button class="btn-blue">Order Now</button>
-                            <button class="btn-white">Learn More</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="slide" id="model-s-slide" style="background-image: url('model-s-bg.jpg');">
-                <div class="slide-content">
-                    <p class="category-tag">Luxury Sedan</p>
-                    <div class="bottom-info">
-                        <h1>Model S</h1>
-                        <p class="promo-detail">3.99% APR Available</p>
-                        <div class="action-buttons">
-                            <button class="btn-blue">Order Now</button>
-                            <button class="btn-white">Learn More</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            </div>
         </div>
 
-        <div class="pagination-dots">
-            <a href="#model-y-slide" class="dot" aria-label="Go to Model Y slide"></a>
-            <a href="#model-3-slide" class="dot active" aria-label="Go to Model 3 slide"></a>
-            <a href="#cybertruck-slide" class="dot" aria-label="Go to Cybertruck slide"></a>
-            <a href="#model-x-slide" class="dot" aria-label="Go to Model X slide"></a>
-            <a href="#model-s-slide" class="dot" aria-label="Go to Model S slide"></a>
-        </div>
-    </main>
-
-    <section class="secondary-content">
-        <div class="promo-cards-container">
-            <article class="promo-card">
-                <div class="promo-text-area">
-                    <h2>Current Offers</h2>
-                    <p>Explore limited-time offers on Tesla vehicles.</p>
-                    <button class="link-btn">Learn More</button>
-                </div>
-                <img src="offers.jpg" alt="Tesla current offers" class="promo-card-img">
-            </article>
-
-            <article class="promo-card">
-                <div class="promo-text-area">
-                    <h2>American Heroes</h2>
-                    <p>$500 off for military, first responders, healthcare and students.</p>
-                    <button class="link-btn">Learn More</button>
-                </div>
-                <img src="heroes.jpg" alt="American Heroes discount" class="promo-card-img">
-            </article>
+        <div class="dots">
+            <a href="#slide-1" class="dot"></a>
+            <a href="#slide-2" class="dot active"></a>
+            <a href="#slide-3" class="dot"></a>
         </div>
     </section>
     <style>
@@ -132,157 +54,82 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* NAVBAR */
-.navbar {
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Flexbox ашиглан картуудыг зэрэгцүүлэх */
+.cards-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    position: fixed;
     width: 100%;
-    z-index: 1000;
+    height: 100%;
+    overflow-x: auto; /* Гүйлгэх боломжтой болгох */
+    scroll-snap-type: x mandatory; /* Зураг яг голдоо зогсдог болгоно */
+    scroll-behavior: smooth;
 }
 
-.logo { font-weight: bold; letter-spacing: 5px; font-size: 20px; color: #171a20; }
-.nav-links { display: flex; gap: 20px; }
-.nav-links a { text-decoration: none; color: #171a20; font-size: 14px; font-weight: 600; }
-.nav-right { display: flex; gap: 15px; cursor: pointer; }
-
-/* FULL SCREEN SLIDER */
-.full-screen-slider {
-    width: 100%;
-    height: 100vh;
-    overflow-y: scroll; /* Босоо тэнхлэгээр гүйлгэх боломжтой болгох */
-    scroll-snap-type: y mandatory; /* Слайдыг яг голдоо зогсоох */
-    scroll-behavior: smooth; /* Гүйлтийг зөөлөн болгох */
-}
-
-/* Scrollbar-ыг нуух */
-.full-screen-slider::-webkit-scrollbar {
-    display: none;
-}
-
-.slide {
-    width: 100%;
-    height: 100vh;
+/* Картыг дэлгэцийн хэмжээтэй адил болгох */
+.card {
+    min-width: 100%; /* Карт бүр дэлгэцийг бүтэн бүрхэнэ */
+    height: 100%;
     background-size: cover;
     background-position: center;
-    scroll-snap-align: start; /* Слайд бүр гүйх үед эхлэлдээ зогсоно */
+    scroll-snap-align: start;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Агуулгыг дээд, доод хэсэгт байрлуулах */
+    justify-content: flex-end; /* Текстийг доор байрлуулна */
     align-items: center;
-    padding: 15vh 0 10vh 0; /* Дээд, доод зай */
+    padding-bottom: 100px;
+}
+
+.content {
+    text-align: center;
     color: white;
 }
 
-.slide-content {
-    text-align: center;
+.content h1 { font-size: 50px; margin-bottom: 10px; }
+.content p { border-bottom: 1px solid white; display: inline-block; margin-bottom: 25px; }
+
+/* Товчлууруудыг зэрэгцүүлэх */
+.btn-group {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%; /* Агуулга слайдыг дүүргэх */
-    justify-content: space-between; /* Гарчиг дээр, товчлуур доор */
+    gap: 15px;
 }
 
-.category-tag { font-size: 14px; font-weight: 500; margin-bottom: 10px; }
-
-.bottom-info {
-    margin-bottom: 20px;
-}
-
-.bottom-info h1 { font-size: 40px; margin-bottom: 5px; }
-.cybertruck-title { font-size: 48px; letter-spacing: 2px; } /* Cybertruck-ийн онцгой фонт */
-.promo-detail { font-size: 14px; border-bottom: 1px solid white; display: inline-block; margin-bottom: 25px; }
-
-.action-buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
 .btn-blue { background: #3e6ae1; color: white; border: none; padding: 12px 60px; border-radius: 4px; cursor: pointer; font-weight: bold; }
 .btn-white { background: white; color: #171a20; border: none; padding: 12px 60px; border-radius: 4px; cursor: pointer; font-weight: bold; }
 
-/* PAGINATION DOTS */
-.pagination-dots {
-    position: fixed;
+/* Доорх 3 цэг - Flexbox-оор голлуулах */
+.dots {
+    position: absolute;
     bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
     display: flex;
-    gap: 10px;
-    z-index: 100;
+    justify-content: center;
+    gap: 12px;
 }
+
 .dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-.dot.active { background: white; transform: scale(1.2); } /* Идэвхтэй цэгийг тодруулах */
-
-/* SECONDARY CONTENT (Доод талын урамшууллын хэсэг) */
-.secondary-content {
-    padding: 40px 20px;
-    background-color: #f8f8f8; /* Цагаан дэвсгэр өнгө */
+    text-decoration: none;
 }
 
-.promo-cards-container {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
-
-.promo-card {
-    flex: 1;
-    max-width: 600px; /* Картын хамгийн их өргөн */
+.dot.active {
     background: white;
-    border-radius: 12px;
-    display: flex;
-    justify-content: space-between;
-    padding: 30px;
-    align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Зөөлөн сүүдэр */
+    transform: scale(1.2);
 }
 
-.promo-text-area { margin-right: 20px; }
-.promo-text-area h2 { font-size: 24px; margin-bottom: 10px; color: #171a20; }
-.promo-text-area p { font-size: 14px; line-height: 1.5; color: #333; }
-.link-btn {
-    background: none;
-    border: none;
-    border-bottom: 1px solid #171a20;
-    font-weight: bold;
-    padding-top: 15px;
-    cursor: pointer;
-    color: #171a20;
-}
-
-.promo-card-img { width: 40%; border-radius: 8px; object-fit: cover; }
-
-/* RESPONSIVE DESIGN - Гар утас болон таблет дээр */
-@media (max-width: 768px) {
-    .navbar { padding: 15px 20px; }
-    .nav-links { display: none; } /* Гар утас дээр цэсийг нуух эсвэл бургер цэс хийх */
-    .nav-right { gap: 10px; }
-
-    .slide {
-        padding: 10vh 20px 5vh 20px;
-    }
-    .bottom-info h1 { font-size: 32px; }
-    .action-buttons { flex-direction: column; gap: 10px; }
-    .btn-blue, .btn-white { width: 100%; padding: 10px 0; }
-
-    .secondary-content { padding: 20px; }
-    .promo-cards-container { flex-direction: column; }
-    .promo-card { flex-direction: column; text-align: center; padding: 20px; }
-    .promo-text-area { margin-right: 0; margin-bottom: 20px; }
-    .promo-card-img { width: 80%; }
+/* Scrollbar-ыг нуух (Цэвэрхэн харагдуулахын тулд) */
+.cards-container::-webkit-scrollbar {
+    display: none;
 }
     </style>
 
