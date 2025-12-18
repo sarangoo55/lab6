@@ -3,136 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tesla Clone - Model Y</title>
+    <title>Tesla Clone | Model 3 & Y</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    overflow-x: hidden;
-}
-
-/* HEADER */
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 30px;
-    z-index: 10;
-    backdrop-filter: blur(8px);
-}
-
-.logo {
-    font-size: 22px;
-    letter-spacing: 4px;
-    font-weight: bold;
-}
-
-.nav-links a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: #000;
-    font-size: 14px;
-}
-
-/* HERO BACKGROUND */
-.hero {
-    height: 100vh;
-    width: 100%;
-    background-image: url('img1.avif'); /* 1-р зураг */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    padding-bottom: 100px;
-    text-align: center;
-
-    animation: slide 15s infinite;
-}
-
-/* SLIDES — 3 зураг */
-@keyframes slide {
-    0% { background-image: url('Homepage-Card-Model-Y-Tablet-US-v2.avif'); }
-    33% { background-image: url('Homepage-Card-Model-3-Tablet-US-v2.avif'); }
-    66% { background-image: url('Homepage-Promo-Meet-Model-Y-Tablet.avif'); }
-    100% { background-image: url('Homepage-Card-Model-Y-Tablet-US-v2.avif'); }
-}
-
-/* TEXT */
-.text-box h1 {
-    font-size: 55px;
-    font-weight: bold;
-    color: #000;
-    margin-bottom: 20px;
-}
-
-/* BUTTONS */
-.btn-box {
-    display: flex;
-    gap: 20px;
-}
-
-.btn {
-    padding: 12px 40px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-.dark {
-    background: black;
-    color: white;
-}
-
-.light {
-    background: white;
-    color: black;
-    border: 2px solid black;
-}
-
-    </style>
 </head>
 <body>
 
-    <!-- HEADER -->
     <header class="navbar">
         <div class="logo">TESLA</div>
         <nav class="nav-links">
             <a href="#">Vehicles</a>
             <a href="#">Energy</a>
             <a href="#">Charging</a>
+            <a href="#">Discover</a>
             <a href="#">Shop</a>
-            <a href="#">Account</a>
         </nav>
+        <div class="nav-icons">
+            <span>?</span>
+            <span>🌐</span>
+            <span>👤</span>
+        </div>
     </header>
 
-    <!-- HERO MODEL Y -->
-    <section class="hero">
-
-        <div class="text-box">
-            <h1>Model Y</h1>
+    <section class="slider-container">
+        <div class="card main-card">
+            <div class="content">
+                <h1>Model 3</h1>
+                <p>1.99% APR Ending December 4</p>
+                <div class="btn-group">
+                    <button class="btn-blue">Order Now</button>
+                    <button class="btn-white">Learn More</button>
+                </div>
+            </div>
         </div>
-
-        <div class="btn-box">
-            <a href="#" class="btn dark">Order Now</a>
-            <a href="#" class="btn light">Learn More</a>
+        <div class="card side-card">
+            <div class="content">
+                <h1>Model Y</h1>
+            </div>
         </div>
-
+        <button class="next-btn">></button>
     </section>
+
+    <section class="info-grid">
+        <div class="info-box">
+            <div class="text">
+                <h2>Current Offers</h2>
+                <p>Explore limited-time offers on Tesla vehicles.</p>
+                <button class="btn-outline">Learn More</button>
+            </div>
+            <img src="tesla-models.jpg" alt="Tesla Models">
+        </div>
+        <div class="info-box">
+            <div class="text">
+                <h2>American Heroes</h2>
+                <p>$500 off for military, first responders, etc.</p>
+                <button class="btn-outline">Learn More</button>
+            </div>
+            <img src="tesla-hero.jpg" alt="Tesla Hero">
+        </div>
+    </section>
+    <style>
+        /* Ерөнхий тохиргоо */
+body { margin: 0; font-family: sans-serif; background-color: #fff; }
+
+/* Navbar - Flexbox-оор гурав хуваах */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+
+.nav-links { display: flex; gap: 20px; }
+.nav-links a { text-decoration: none; color: #000; font-weight: 500; font-size: 14px; }
+
+/* Slider Section - Flexbox-оор зэрэгцүүлэх */
+.slider-container {
+    display: flex;
+    gap: 20px;
+    padding: 80px 20px 20px 20px;
+    overflow: hidden; /* Зөвхөн харагдах хэсгийг гаргах */
+    position: relative;
+}
+
+.card {
+    min-width: 70%; /* Зураг 3-т харагдаж байгаа шиг том карт */
+    height: 80vh;
+    background-color: #f4f4f4;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Текстийг доор байрлуулах */
+    padding: 40px;
+    background-image: url('model3.jpg'); /* Өөрийн зургаа хийнэ */
+    background-size: cover;
+}
+
+.content h1 { color: white; font-size: 48px; margin-bottom: 5px; }
+.content p { color: white; border-bottom: 1px solid white; display: inline-block; margin-bottom: 20px; }
+
+.btn-group { display: flex; gap: 15px; }
+.btn-blue { background: #3e6ae1; color: white; border: none; padding: 10px 40px; border-radius: 5px; cursor: pointer; }
+.btn-white { background: white; color: black; border: none; padding: 10px 40px; border-radius: 5px; cursor: pointer; }
+
+/* Info Grid - Зураг 2 дээрх бүтэц */
+.info-grid {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.info-box {
+    flex: 1; /* Хоёр тал тэнцүү хэмжээтэй */
+    background: #f4f4f4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.info-box img { width: 40%; border-radius: 8px; }
+    </style>
 
 </body>
 </html>
