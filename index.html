@@ -22,7 +22,6 @@
     nav a { text-decoration: none; color: #111; font-weight: 600; font-size: 15px; }
 
     .hero-slider { height: 100vh; position: relative; overflow: hidden; }
-    
     input[type=radio] { display: none; }
 
     .hero-slides { 
@@ -33,20 +32,20 @@
     }
 
     .arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:rgba(255,255,255,0.9);
-  border:none;
-  width:48px;
-  height:48px;
-  border-radius:50%;
-  font-size:28px;
-  cursor:pointer;
-  z-index:10;
-}
-.arrow.left{ left:20px; }
-.arrow.right{ right:20px; }
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      background:rgba(255,255,255,0.9);
+      border:none;
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      font-size:28px;
+      cursor:pointer;
+      z-index:10;
+    }
+    .arrow.left{ left:20px; }
+    .arrow.right{ right:20px; }
 
     .hero {
       min-width: 33.3333%; 
@@ -55,6 +54,7 @@
       display: flex; flex-direction: column;
       justify-content: flex-start; align-items: center;
       padding-top: 140px; text-align: center;
+      position: relative;
     }
     .hero h1 { font-size: 56px; margin-bottom: 10px; color: #111; }
 
@@ -64,24 +64,24 @@
 
     .vehicles { padding: 60px; }
     .slider { position: relative; overflow: hidden; width: 100%; }
-    
+
     .slides-5 { 
       display: flex; 
       width: auto; 
       transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); 
     }
-    
+
     .vehicle-card { 
-      min-width: 20%; 
+      flex: 0 0 20%; 
       height: 500px; 
-      padding: 10px; 
+      padding: 5px; 
     }
-    
+
     .card-inner {
       position: relative; width: 100%; height: 100%;
       border-radius: 15px; overflow: hidden;
     }
-    .card-inner img { width: 100%; height: 100%; object-fit: contain; }
+    .card-inner img { width: 100%; height: 100%; object-fit: contain; background:#fff; }
 
     #s1:checked ~ .slides-5 { transform: translateX(0); }
     #s2:checked ~ .slides-5 { transform: translateX(-20%); }
@@ -135,9 +135,9 @@
       .btn-group { flex-direction: column; width: 90%; align-items: center; }
       .btn { min-width: 250px; }
       .hero h1 { font-size: 36px; }
+      .vehicle-card { flex: 0 0 100%; padding: 5px; }
     }
   </style>
-
 </head>
 <body>
 
@@ -159,7 +159,7 @@
   <div class="hero-slides">
     <section class="hero" style="background-image:url('Homepage-Promo-Meet-Model-Y-Tablet.avif')" aria-label="Tesla Model Y">
       <h1>Model Y</h1>
-       <img src="Homepage-Promo-Meet-Model-Y-Tablet.avif" alt="Tesla Model Y" style="display:none;">
+      <img src="Homepage-Promo-Meet-Model-Y-Tablet.avif" alt="Tesla Model Y" style="display:none;">
       <div class="btn-group">
         <button class="btn primary">Order Now</button>
         <button class="btn secondary">View Inventory</button>
@@ -179,6 +179,9 @@
         <button class="btn secondary">View Inventory</button>
       </div>
     </section>
+
+    <button class="arrow left" onclick="prevHero()">‹</button>
+    <button class="arrow right" onclick="nextHero()">›</button>
   </div>
 
   <div class="dots">
@@ -202,12 +205,12 @@
       <div class="vehicle-card"><div class="card-inner"><img src="Homepage-Card-Cybertruck-Tablet-US-v3.avif"  alt="Tesla Cybertruck"><div class="vehicle-info"><h2>Cybertruck</h2><div class="btn-group"><button class="btn primary">Order Now</button></div></div></div></div>
       <div class="vehicle-card"><div class="card-inner"><img src="Homepage-Card-Model-X-New-Tablet-US-v4.avif" alt="Tesla Model X"><div class="vehicle-info"><h2>Model X</h2><div class="btn-group"><button class="btn primary">Order Now</button></div></div></div></div>
       <div class="vehicle-card"><div class="card-inner"><img src="Homepage-Card-Model-S-Tablet-US-v3.avif" alt="Tesla Model S"><div class="vehicle-info"><h2>Model S</h2><div class="btn-group"><button class="btn primary">Order Now</button></div></div></div></div>
-    </div
+    </div>
 
-       <div class="btn-group">
-       <button class="arrow left" onclick="prevVehicle()">‹</button>
-       <button class="arrow right" onclick="nextVehicle()">›</button>
-      </div>
+    <div class="btn-group">
+      <button class="arrow left" onclick="prevVehicle()">‹</button>
+      <button class="arrow right" onclick="nextVehicle()">›</button>
+    </div>
 
     <div class="dots">
       <label for="s1"></label>
@@ -240,32 +243,20 @@
     <h2>Features That Come Standard</h2>
   </div>
 </section>
+
 <script>
 let heroIndex = 1;
-setInterval(() => {
-  heroIndex++;
-  if (heroIndex > 3) heroIndex = 1;
-  document.getElementById('h' + heroIndex).checked = true;
-}, 4000);
-
+const maxHero = 3;
 let vehicleIndex = 1;
 const maxVehicles = 5;
 
-function updateVehicle(){
-  document.getElementById('s' + vehicleIndex).checked = true;
-}
+function updateHero(){ document.getElementById('h' + heroIndex).checked = true; }
+function nextHero(){ heroIndex++; if(heroIndex>maxHero) heroIndex=1; updateHero(); }
+function prevHero(){ heroIndex--; if(heroIndex<1) heroIndex=maxHero; updateHero(); }
 
-function nextVehicle(){
-  vehicleIndex++;
-  if(vehicleIndex > maxVehicles) vehicleIndex = 1;
-  updateVehicle();
-}
-
-function prevVehicle(){
-  vehicleIndex--;
-  if(vehicleIndex < 1) vehicleIndex = maxVehicles;
-  updateVehicle();
-}
+function updateVehicle(){ document.getElementById('s' + vehicleIndex).checked = true; }
+function nextVehicle(){ vehicleIndex++; if(vehicleIndex>maxVehicles) vehicleIndex=1; updateVehicle(); }
+function prevVehicle(){ vehicleIndex--; if(vehicleIndex<1) vehicleIndex=maxVehicles; updateVehicle(); }
 </script>
 
 </body>
