@@ -245,13 +245,14 @@
 </section>
 
 <script>
-  let heroIndex = 1;
+let heroIndex = 1;
 const maxHero = 3;
 let vehicleIndex = 1;
 const maxVehicles = 5;
 
 function updateHero() { 
-    document.getElementById('h' + heroIndex).checked = true; 
+    const radio = document.getElementById('h' + heroIndex);
+    if(radio) radio.checked = true; 
 }
 
 function nextHero() { 
@@ -266,10 +267,17 @@ function prevHero() {
     updateHero(); 
 }
 
-setInterval(nextHero, 5000); 
+let autoHeroSlider = setInterval(nextHero, 5000);
 
+function manualHero(direction) {
+    clearInterval(autoHeroSlider); 
+    if(direction === 'next') nextHero();
+    else prevHero();
+    autoHeroSlider = setInterval(nextHero, 5000); 
+}
 function updateVehicle() { 
-    document.getElementById('s' + vehicleIndex).checked = true; 
+    const radio = document.getElementById('s' + vehicleIndex);
+    if(radio) radio.checked = true; 
 }
 
 function nextVehicle() { 
