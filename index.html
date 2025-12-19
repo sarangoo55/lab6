@@ -118,6 +118,15 @@
       .hero h1 { font-size: 36px; }
     }
   </style>
+  <script>
+  let heroIndex = 1;
+  setInterval(() => {
+    heroIndex++;
+    if (heroIndex > 3) heroIndex = 1;
+    document.getElementById('h' + heroIndex).checked = true;
+  }, 4000); 
+</script>
+
 </head>
 <body>
 
