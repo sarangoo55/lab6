@@ -29,6 +29,29 @@
       height: 100%; 
       transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
     }
+
+    .arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(255,255,255,0.9);
+  border:none;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  font-size:28px;
+  cursor:pointer;
+  z-index:10;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+.arrow.left{ left:20px; }
+.arrow.right{ right:20px; }
+
+.arrow:hover{
+  background:white;
+}
+
     
     .hero {
       min-width: 33.3333%; 
@@ -118,13 +141,33 @@
       .hero h1 { font-size: 36px; }
     }
   </style>
-  <script>
+  <script
   let heroIndex = 1;
   setInterval(() => {
     heroIndex++;
     if (heroIndex > 3) heroIndex = 1;
     document.getElementById('h' + heroIndex).checked = true;
   }, 4000); 
+    
+  let vehicleIndex = 1;
+  const maxVehicles = 5;
+
+  function updateVehicle(){
+    document.getElementById('s' + vehicleIndex).checked = true;
+  }
+
+  function nextVehicle(){
+    vehicleIndex++;
+    if(vehicleIndex > maxVehicles) vehicleIndex = 1;
+    updateVehicle();
+  }
+
+  function prevVehicle(){
+    vehicleIndex--;
+    if(vehicleIndex < 1) vehicleIndex = maxVehicles;
+    updateVehicle();
+  }
+
 </script>
 
 </head>
@@ -190,7 +233,12 @@
       <div class="vehicle-card"><div class="card-inner"><img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Cybertruck-Desktop.jpg"><div class="vehicle-info"><h2>Cybertruck</h2><div class="btn-group"><button class="btn primary">Order Now</button></div></div></div></div>
       <div class="vehicle-card"><div class="card-inner"><img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Model-X-Desktop-LHD.jpg"><div class="vehicle-info"><h2>Model X</h2><div class="btn-group"><button class="btn primary">Order Now</button></div></div></div></div>
       <div class="vehicle-card"><div class="card-inner"><img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Model-S-Desktop-LHD.jpg"><div class="vehicle-info"><h2>Model S</h2><div class="btn-group"><button class="btn primary">Order Now</button></div></div></div></div>
-    </div>
+    </div
+
+       <div class="btn-group">
+       <button class="arrow left" onclick="prevVehicle()">‹</button>
+       <button class="arrow right" onclick="nextVehicle()">›</button>
+      </div>
 
     <div class="dots">
       <label for="s1"></label>
