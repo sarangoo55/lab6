@@ -146,6 +146,25 @@
     updateVehicle();
   }
 
+     let vehicleIndex = 1;
+  const maxVehicles = 5;
+
+  function updateVehicle(){
+    document.getElementById('s' + vehicleIndex).checked = true;
+  }
+
+  function nextVehicle(){
+    vehicleIndex++;
+    if(vehicleIndex > maxVehicles) vehicleIndex = 1;
+    updateVehicle();
+  }
+
+  function prevVehicle(){
+    vehicleIndex--;
+    if(vehicleIndex < 1) vehicleIndex = maxVehicles;
+    updateVehicle();
+  }
+
 </script>
 
 </head>
