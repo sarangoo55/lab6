@@ -188,21 +188,21 @@
       <h1>Model Y</h1>
       <div class="btn-group">
         <button class="btn primary">Order Now</button>
-        <button class="btn secondary">Learn More</button>
+        <button class="btn secondary">View Inventory</button>
       </div>
     </section>
     <section class="hero" style="background-image:url('Homepage-Promo-Meet-Model-3-Tablet.avif')">
       <h1>Model 3</h1>
       <div class="btn-group">
         <button class="btn primary">Order Now</button>
-        <button class="btn secondary">Learn More</button>
+        <button class="btn secondary">View Inventory</button>
       </div>
     </section>
     <section class="hero" style="background-image:url('Homepage-Promo-Cybertruck-Tablet-US-v2.avif')">
       <h1>Cybertruck</h1>
       <div class="btn-group">
         <button class="btn primary">Order Now</button>
-        <button class="btn secondary">Learn More</button>
+        <button class="btn secondary">View Inventory</button>
       </div>
     </section>
   </div>
@@ -214,61 +214,28 @@
   </div>
 </header>
 
-<!-- VEHICLE SLIDER -->
+<!-- VEHICLE SLIDER (5 MODELS) -->
 <section class="vehicles">
   <div class="slider">
     <input type="radio" name="slide" id="s1" checked>
     <input type="radio" name="slide" id="s2">
     <input type="radio" name="slide" id="s3">
+    <input type="radio" name="slide" id="s4">
+    <input type="radio" name="slide" id="s5">
 
-    <div class="slides">
-      <div class="vehicle-card">
-        <img src="model3.jpg" alt="Model 3">
-        <div class="vehicle-info">
-          <h2>Model 3</h2>
-          <div class="btn-group">
-            <button class="btn primary">Order Now</button>
-            <button class="btn secondary">Learn More</button>
-          </div>
-        </div>
-      </div>
-      <div class="vehicle-card">
-        <img src="modely.jpg" alt="Model Y">
-        <div class="vehicle-info">
-          <h2>Model Y</h2>
-        </div>
-      </div>
-      <div class="vehicle-card">
-        <img src="models.jpg" alt="Model S">
-        <div class="vehicle-info">
-          <h2>Model S</h2>
-        </div>
-      </div>
+    <div class="slides" style="width:500%">
+      <div class="vehicle-card"><img src="Homepage-Card-Model-Y-Tablet-US-v2.avif"><div class="vehicle-info"><h2>Model Y</h2><div class="btn-group"><button class="btn primary">Order Now</button><button class="btn secondary">Learn More</button></div></div></div>
+      <div class="vehicle-card"><img src="Homepage-Card-Model-3-Tablet-US-v2.avif"><div class="vehicle-info"><h2>Model 3</h2><div class="btn-group"><button class="btn primary">Order Now</button><button class="btn secondary">Learn More</button></div></div></div>
+      <div class="vehicle-card"><img src="Homepage-Card-Cybertruck-Tablet-US-v3.avif"><div class="vehicle-info"><h2>Cybertruck</h2><div class="btn-group"><button class="btn primary">Order Now</button><button class="btn secondary">Learn More</button></div></div></div>
+      <div class="vehicle-card"><img src="Homepage-Card-Model-X-New-Tablet-US-v4.avif"><div class="vehicle-info"><h2>Model X</h2><div class="btn-group"><button class="btn primary">Order Now</button><button class="btn secondary">Learn More</button></div></div></div>
+      <div class="vehicle-card"><img src="Homepage-Card-Model-S-Tablet-US-v3.avif"><div class="vehicle-info"><h2>Model S</h2><div class="btn-group"><button class="btn primary">Order Now</button><button class="btn secondary">Learn More</button></div></div></div>
     </div>
 
     <div class="dots">
-      <label for="s1"></label>
-      <label for="s2"></label>
-      <label for="s3"></label>
+      <label for="s1"></label><label for="s2"></label><label for="s3"></label><label for="s4"></label><label for="s5"></label>
     </div>
   </div>
 </section>
-
-<script>
-  let currentHero = 1;
-  const totalHero = 3;
-  setInterval(() => {
-    currentHero = currentHero % totalHero + 1;
-    document.getElementById('h' + currentHero).checked = true;
-  }, 5000);
-
-  let current = 1;
-  const total = 3;
-  setInterval(() => {
-    current = current % total + 1;
-    document.getElementById('s' + current).checked = true;
-  }, 4000);
-</script>
 
 <!-- OFFERS -->
 <section class="offers">
@@ -291,11 +258,11 @@
 <!-- FEATURES -->
 <section class="features">
   <div class="feature">
-    <img src="fsd.jpg" alt="FSD">
+    <img src="OIP.jfif" alt="FSD">
     <h2>Full Self‑Driving (Supervised)</h2>
   </div>
   <div class="feature">
-    <img src="feature.jpg" alt="Feature">
+    <img src="Homepage-Features-Desktop.avif" alt="Feature">
     <h2>Features That Come Standard</h2>
   </div>
 </section>
