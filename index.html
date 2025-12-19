@@ -67,7 +67,7 @@
     
     .slides-5 { 
       display: flex; 
-      width: 500%; 
+      width: auto; 
       transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); 
     }
     
@@ -76,11 +76,12 @@
       height: 500px; 
       padding: 10px; 
     }
+    
     .card-inner {
       position: relative; width: 100%; height: 100%;
       border-radius: 15px; overflow: hidden;
     }
-    .card-inner img { width: 100%; height: 100%; object-fit: cover; }
+    .card-inner img { width: 100%; height: 100%; object-fit: contain; }
 
     #s1:checked ~ .slides-5 { transform: translateX(0); }
     #s2:checked ~ .slides-5 { transform: translateX(-20%); }
@@ -157,7 +158,7 @@
 
   <div class="hero-slides">
     <section class="hero" style="background-image:url('Homepage-Promo-Meet-Model-Y-Tablet.avif')" aria-label="Tesla Model Y">
-      <h1>Tesla Model Y Electric Vehicle</h1>
+      <h1>Model Y</h1>
        <img src="Homepage-Promo-Meet-Model-Y-Tablet.avif" alt="Tesla Model Y" style="display:none;">
       <div class="btn-group">
         <button class="btn primary">Order Now</button>
