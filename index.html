@@ -245,18 +245,44 @@
 </section>
 
 <script>
-let heroIndex = 1;
+  let heroIndex = 1;
 const maxHero = 3;
 let vehicleIndex = 1;
 const maxVehicles = 5;
 
-function updateHero(){ document.getElementById('h' + heroIndex).checked = true; }
-function nextHero(){ heroIndex++; if(heroIndex>maxHero) heroIndex=1; updateHero(); }
-function prevHero(){ heroIndex--; if(heroIndex<1) heroIndex=maxHero; updateHero(); }
+function updateHero() { 
+    document.getElementById('h' + heroIndex).checked = true; 
+}
 
-function updateVehicle(){ document.getElementById('s' + vehicleIndex).checked = true; }
-function nextVehicle(){ vehicleIndex++; if(vehicleIndex>maxVehicles) vehicleIndex=1; updateVehicle(); }
-function prevVehicle(){ vehicleIndex--; if(vehicleIndex<1) vehicleIndex=maxVehicles; updateVehicle(); }
+function nextHero() { 
+    heroIndex++; 
+    if(heroIndex > maxHero) heroIndex = 1; 
+    updateHero(); 
+}
+
+function prevHero() { 
+    heroIndex--; 
+    if(heroIndex < 1) heroIndex = maxHero; 
+    updateHero(); 
+}
+
+setInterval(nextHero, 5000); 
+
+function updateVehicle() { 
+    document.getElementById('s' + vehicleIndex).checked = true; 
+}
+
+function nextVehicle() { 
+    vehicleIndex++; 
+    if(vehicleIndex > maxVehicles) vehicleIndex = 1; 
+    updateVehicle(); 
+}
+
+function prevVehicle() { 
+    vehicleIndex--; 
+    if(vehicleIndex < 1) vehicleIndex = maxVehicles; 
+    updateVehicle(); 
+}
 </script>
 
 </body>
