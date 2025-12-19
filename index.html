@@ -3,295 +3,262 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tesla Vehicles - Model Y, 3, X, S & Cybertruck | Official Site</title>
-  <meta name="description" content="Explore Tesla's electric vehicles including Model Y, Model 3, Model X, Model S, and Cybertruck. Order now, view inventory, and learn about current offers.">
-  <meta name="keywords" content="Tesla, Model Y, Model 3, Model X, Model S, Cybertruck, Electric Cars, EV, Tesla Offers, Tesla Features">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Tesla Clone - Custom Slider</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; color: #111; background:#fff; overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; color: #111; background: #fff; overflow-x: hidden; }
 
+    /* Navigation */
     nav {
-      position: absolute; top: 0; left: 0; width: 100%;
-      display: grid; grid-template-columns: 1fr auto 1fr;
-      align-items: center; padding: 20px 60px; z-index: 100;
-      background: transparent;
+      position: absolute; top: 0; width: 100%; display: flex; 
+      justify-content: space-between; align-items: center; 
+      padding: 20px 40px; z-index: 100; background: transparent;
     }
-    nav strong { font-size: 20px; letter-spacing: 6px; cursor: pointer; }
-    nav ul { justify-self: center; display: flex; gap: 30px; list-style: none; }
-    nav a { text-decoration: none; color: #111; font-weight: 600; font-size: 15px; }
+    .logo { font-size: 20px; letter-spacing: 6px; font-weight: 700; cursor: pointer; }
+    nav ul { display: flex; gap: 25px; list-style: none; }
+    nav a { text-decoration: none; color: #111; font-weight: 600; font-size: 14px; }
 
+    /* 1. Hero Slider (Дээд талын автомат хэсэг) */
     .hero-slider { height: 100vh; position: relative; overflow: hidden; }
     input[type=radio] { display: none; }
 
-    .hero-slides { 
-      display: flex; 
-      width: 300%; 
-      height: 100%; 
-      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
+    .hero-slides { display: flex; width: 300%; height: 100%; transition: transform 0.7s ease-in-out; }
+    .hero { 
+      width: 33.3333%; height: 100%; background-size: cover; background-position: center; 
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+      padding-top: 120px; text-align: center;
     }
-
-    .arrow{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      background:rgba(255,255,255,0.9);
-      border:none;
-      width:48px;
-      height:48px;
-      border-radius:50%;
-      font-size:28px;
-      cursor:pointer;
-      z-index:10;
-    }
-    .arrow.left{ left:20px; }
-    .arrow.right{ right:20px; }
-
-    .hero {
-      min-width: 33.3333%; 
-      height: 100%;
-      background-size: cover; background-position: center;
-      display: flex; flex-direction: column;
-      justify-content: flex-start; align-items: center;
-      padding-top: 140px; text-align: center;
-      position: relative;
-    }
-    .hero h1 { font-size: 56px; margin-bottom: 10px; color: #111; }
+    .hero h1 { font-size: 50px; font-weight: 600; margin-bottom: 8px; }
+    .hero p { font-size: 14px; text-decoration: underline; cursor: pointer; margin-bottom: 20px; }
 
     #h1:checked ~ .hero-slides { transform: translateX(0); }
     #h2:checked ~ .hero-slides { transform: translateX(-33.3333%); }
     #h3:checked ~ .hero-slides { transform: translateX(-66.6666%); }
 
-    .vehicles { padding: 60px; }
-    .slider { position: relative; overflow: hidden; width: 100%; }
+    /* 2. Vehicle Section (Доод талын том 5 карт) */
+    .vehicles-section { padding: 80px 0; position: relative; }
+    .slider-container { width: 100%; overflow: hidden; padding: 0 40px; }
 
     .slides-5 { 
-      display: flex; 
-      width: auto; 
-      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); 
+      display: flex; width: 500%; /* 5 карт тул */
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
+      gap: 20px;
     }
 
+    /* Зураг дээрх шиг том харагдуулахын тулд width-г 85% болгов */
     .vehicle-card { 
-      flex: 0 0 20%; 
-      height: 500px; 
-      padding: 5px; 
+      width: 85vw; /* Маш том харагдана */
+      height: 550px; position: relative; border-radius: 12px; overflow: hidden;
     }
+    .vehicle-card img { width: 100%; height: 100%; object-fit: cover; }
 
-    .card-inner {
-      position: relative; width: 100%; height: 100%;
-      border-radius: 15px; overflow: hidden;
+    .card-content {
+      position: absolute; bottom: 50px; left: 50px; color: white;
     }
-    .card-inner img { width: 100%; height: 100%; object-fit: contain; background:#fff; }
+    .card-content h2 { font-size: 40px; margin-bottom: 5px; }
+    .card-content p { font-size: 16px; margin-bottom: 20px; text-decoration: underline; }
 
+    /* Картын шилжилт (Гараар) */
     #s1:checked ~ .slides-5 { transform: translateX(0); }
-    #s2:checked ~ .slides-5 { transform: translateX(-20%); }
-    #s3:checked ~ .slides-5 { transform: translateX(-40%); }
-    #s4:checked ~ .slides-5 { transform: translateX(-60%); }
-    #s5:checked ~ .slides-5 { transform: translateX(-80%); }
+    #s2:checked ~ .slides-5 { transform: translateX(calc(-85vw - 20px)); }
+    #s3:checked ~ .slides-5 { transform: translateX(calc(-170vw - 40px)); }
+    #s4:checked ~ .slides-5 { transform: translateX(calc(-255vw - 60px)); }
+    #s5:checked ~ .slides-5 { transform: translateX(calc(-340vw - 80px)); }
 
+    /* Buttons & Controls */
+    .btn-group { display: flex; gap: 15px; }
+    .btn {
+      padding: 10px 40px; border-radius: 4px; border: none; font-weight: 600;
+      cursor: pointer; font-size: 14px; min-width: 160px;
+    }
+    .btn.blue { background: #3e6ae1; color: #fff; }
+    .btn.white { background: #fff; color: #111; }
+
+    /* Arrows */
+    .arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: white; border: none; width: 40px; height: 40px;
+      border-radius: 50%; cursor: pointer; z-index: 10; font-size: 20px;
+    }
+    .arrow.left { left: 15px; }
+    .arrow.right { right: 15px; }
+
+    /* Dots */
     .dots {
-      position: absolute; bottom: 30px; width: 100%;
-      display: flex; justify-content: center; gap: 12px; z-index: 5;
+      display: flex; justify-content: center; gap: 10px; margin-top: 30px;
     }
     .dots label {
-      width: 10px; height: 10px; background: rgba(0,0,0,0.2);
-      border-radius: 50%; cursor: pointer; transition: 0.3s;
+      width: 10px; height: 10px; background: #ccc; border-radius: 50%; cursor: pointer;
     }
+    #s1:checked ~ .dots label[for="s1"], #s2:checked ~ .dots label[for="s2"],
+    #s3:checked ~ .dots label[for="s3"], #s4:checked ~ .dots label[for="s4"],
+    #s5:checked ~ .dots label[for="s5"] { background: #111; transform: scale(1.2); }
 
-    #h1:checked ~ .dots label[for="h1"],
-    #h2:checked ~ .dots label[for="h2"],
-    #h3:checked ~ .dots label[for="h3"] { background: #111; transform: scale(1.3); }
-
-    #s1:checked ~ .dots label[for="s1"],
-    #s2:checked ~ .dots label[for="s2"],
-    #s3:checked ~ .dots label[for="s3"],
-    #s4:checked ~ .dots label[for="s4"],
-    #s5:checked ~ .dots label[for="s5"] { background: #111; transform: scale(1.3); }
-
-    .btn-group { display: flex; gap: 20px; margin-top: 20px; }
-    .btn {
-      min-width: 200px; padding: 12px 24px; border-radius: 4px;
-      font-weight: 600; border: none; cursor: pointer; transition: 0.3s;
-    }
-    .btn.primary { background: #3e6ae1; color: white; }
-    .btn.secondary { background: rgba(255,255,255,0.8); color: #111; }
-
-    .vehicle-info {
-      position: absolute; bottom: 40px; left: 40px; color: white; z-index: 2;
-    }
-    .vehicle-info h2 { font-size: 32px; margin-bottom: 15px; }
-
-    .offers, .features { 
-      padding: 40px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; 
-    }
-    .offer { background: #f4f4f4; padding: 40px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; }
-    .feature { position: relative; height: 400px; border-radius: 12px; overflow: hidden; }
-    .feature img { width: 100%; height: 100%; object-fit: cover; }
-    .feature h2 { position: absolute; bottom: 30px; left: 30px; color: white; font-size: 32px; }
-
-    @media(max-width: 900px) {
-      nav ul { display: none; }
-      .offers, .features { grid-template-columns: 1fr; padding: 20px; }
-      .btn-group { flex-direction: column; width: 90%; align-items: center; }
-      .btn { min-width: 250px; }
-      .hero h1 { font-size: 36px; }
-      .vehicle-card { flex: 0 0 100%; padding: 5px; }
+    @media (max-width: 768px) {
+      .vehicle-card { width: 95vw; height: 400px; }
+      .hero h1 { font-size: 32px; }
     }
   </style>
 </head>
 <body>
 
-<header class="hero-slider">
-  <nav>
-    <strong>TESLA</strong>
-    <ul>
-      <li><a href="#">Vehicles</a></li>
-      <li><a href="#">Energy</a></li>
-      <li><a href="#">Charging</a></li>
-      <li><a href="#">Shop</a></li>
-    </ul>
-  </nav>
+  <header class="hero-slider">
+    <nav>
+      <div class="logo">TESLA</div>
+      <ul>
+        <li><a href="#">Vehicles</a></li>
+        <li><a href="#">Energy</a></li>
+        <li><a href="#">Charging</a></li>
+        <li><a href="#">Shop</a></li>
+      </ul>
+      <div class="icons">🌐 👤</div>
+    </nav>
 
-  <input type="radio" name="hero" id="h1" checked>
-  <input type="radio" name="hero" id="h2">
-  <input type="radio" name="hero" id="h3">
+    <input type="radio" name="hero" id="h1" checked>
+    <input type="radio" name="hero" id="h2">
+    <input type="radio" name="hero" id="h3">
 
-  <div class="hero-slides">
-    <section class="hero" style="background-image:url('Homepage-Promo-Meet-Model-Y-Tablet.avif')" aria-label="Tesla Model Y">
-      <h1>Model Y</h1>
-      <img src="Homepage-Promo-Meet-Model-Y-Tablet.avif" alt="Tesla Model Y" style="display:none;">
-      <div class="btn-group">
-        <button class="btn primary">Order Now</button>
-        <button class="btn secondary">View Inventory</button>
-      </div>
-    </section>
-    <section class="hero" style="background-image:url('Homepage-Promo-Meet-Model-3-Tablet.avif')">
-      <h1>Model 3</h1>
-      <div class="btn-group">
-        <button class="btn primary">Order Now</button>
-        <button class="btn secondary">View Inventory</button>
-      </div>
-    </section>
-    <section class="hero" style="background-image:url('Homepage-Promo-Cybertruck-Tablet-US-v2.avif')">
-      <h1>Cybertruck</h1>
-      <div class="btn-group">
-        <button class="btn primary">Order Now</button>
-        <button class="btn secondary">View Inventory</button>
-      </div>
-    </section>
-
-    <button class="arrow left" onclick="prevHero()">‹</button>
-    <button class="arrow right" onclick="nextHero()">›</button>
-  </div>
-
-  <div class="dots">
-    <label for="h1"></label>
-    <label for="h2"></label>
-    <label for="h3"></label>
-  </div>
-</header>
-
-<section class="vehicles">
-  <div class="slider">
-    <input type="radio" name="slide" id="s1" checked>
-    <input type="radio" name="slide" id="s2">
-    <input type="radio" name="slide" id="s3">
-    <input type="radio" name="slide" id="s4">
-    <input type="radio" name="slide" id="s5">
-
-    <div class="slides-5">
-      <div class="vehicle-card"><div class="card-inner"><img src="Homepage-Card-Model-Y-Tablet-US-v2.avif" alt="Tesla Model Y"><div class="vehicle-info"><h2>Model Y</h2><div class="btn-group"><button class="btn primary">Order Now</button></div></div></div></div>
-      <div class="vehicle-card"><div class="card-inner"><img src="Homepage-Card-Model-3-Tablet-US-v2.avif" alt="Tesla Model 3"><div class="vehicle-info"><h2>Model 3</h2><div class="btn-group"><button class="btn primary">Order Now</button></div></div></div></div>
-      <div class="vehicle-card"><div class="card-inner"><img src="Homepage-Card-Cybertruck-Tablet-US-v3.avif"  alt="Tesla Cybertruck"><div class="vehicle-info"><h2>Cybertruck</h2><div class="btn-group"><button class="btn primary">Order Now</button></div></div></div></div>
-      <div class="vehicle-card"><div class="card-inner"><img src="Homepage-Card-Model-X-New-Tablet-US-v4.avif" alt="Tesla Model X"><div class="vehicle-info"><h2>Model X</h2><div class="btn-group"><button class="btn primary">Order Now</button></div></div></div></div>
-      <div class="vehicle-card"><div class="card-inner"><img src="Homepage-Card-Model-S-Tablet-US-v3.avif" alt="Tesla Model S"><div class="vehicle-info"><h2>Model S</h2><div class="btn-group"><button class="btn primary">Order Now</button></div></div></div></div>
+    <div class="hero-slides">
+      <section class="hero" style="background-image:url('Homepage-Promo-Meet-Model-Y-Tablet.avif')">
+        <h1>Model Y</h1>
+        <p>1.99% APR Ending December 4</p>
+        <div class="btn-group">
+          <button class="btn blue">Order Now</button>
+          <button class="btn white">Learn More</button>
+        </div>
+      </section>
+      <section class="hero" style="background-image:url('Homepage-Promo-Meet-Model-3-Tablet.avif')">
+        <h1>Model 3</h1>
+        <p>1.99% APR Ending December 4</p>
+        <div class="btn-group">
+          <button class="btn blue">Order Now</button>
+          <button class="btn white">Learn More</button>
+        </div>
+      </section>
+      <section class="hero" style="background-image:url('Homepage-Promo-Cybertruck-Tablet-US-v2.avif')">
+        <h1>Cybertruck</h1>
+        <div class="btn-group">
+          <button class="btn blue">Order Now</button>
+          <button class="btn white">Learn More</button>
+        </div>
+      </section>
     </div>
+  </header>
 
-    <div class="btn-group">
+  <section class="vehicles-section">
+    <div class="slider-container">
+      <input type="radio" name="vslide" id="s1" checked>
+      <input type="radio" name="vslide" id="s2">
+      <input type="radio" name="vslide" id="s3">
+      <input type="radio" name="vslide" id="s4">
+      <input type="radio" name="vslide" id="s5">
+
+      <div class="slides-5">
+        <div class="vehicle-card">
+          <img src="Homepage-Card-Model-Y-Tablet-US-v2.avif" alt="Model Y">
+          <div class="card-content"><h2>Model Y</h2><p>Learn More</p>
+            <div class="btn-group"><button class="btn blue">Order Now</button></div>
+          </div>
+        </div>
+        <div class="vehicle-card">
+          <img src="Homepage-Card-Model-3-Tablet-US-v2.avif" alt="Model 3">
+          <div class="card-content"><h2>Model 3</h2><p>Learn More</p>
+            <div class="btn-group"><button class="btn blue">Order Now</button></div>
+          </div>
+        </div>
+        <div class="vehicle-card">
+          <img src="Homepage-Card-Model-X-New-Tablet-US-v4.avif" alt="Model X">
+          <div class="card-content"><h2>Model X</h2><p>Learn More</p>
+            <div class="btn-group"><button class="btn blue">Order Now</button></div>
+          </div>
+        </div>
+        <div class="vehicle-card">
+          <img src="Homepage-Card-Model-S-Tablet-US-v3.avif" alt="Model S">
+          <div class="card-content"><h2>Model S</h2><p>Learn More</p>
+            <div class="btn-group"><button class="btn blue">Order Now</button></div>
+          </div>
+        </div>
+        <div class="vehicle-card">
+          <img src="Homepage-Card-Cybertruck-Tablet-US-v3.avif" alt="Cybertruck">
+          <div class="card-content"><h2>Cybertruck</h2><p>Learn More</p>
+            <div class="btn-group"><button class="btn blue">Order Now</button></div>
+          </div>
+        </div>
+      </div>
+
       <button class="arrow left" onclick="prevVehicle()">‹</button>
       <button class="arrow right" onclick="nextVehicle()">›</button>
-    </div>
 
-    <div class="dots">
-      <label for="s1"></label>
-      <label for="s2"></label>
-      <label for="s3"></label>
-      <label for="s4"></label>
-      <label for="s5"></label>
+      <div class="dots">
+        <label for="s1"></label><label for="s2"></label><label for="s3"></label><label for="s4"></label><label for="s5"></label>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+  <section class="offers">
 
-<section class="offers">
   <div class="offer">
+
     <div><h3>Current Offers</h3><p>Explore limited-time offers on Tesla vehicles.</p></div>
+
     <button class="btn secondary">Learn More</button>
+
   </div>
+
   <div class="offer">
+
     <div><h3>American Heroes</h3><p>$500 off for military, teachers, first responders healthcare, teachers and students.</p></div>
+
     <button class="btn secondary">Learn More</button>
+
   </div>
+
 </section>
+
+
 
 <section class="features">
+
   <div class="feature">
+
     <img src="OIP.jfif">
+
     <h2>Full Self‑Driving (Supervised)</h2>
+
   </div>
+
   <div class="feature">
+
     <img src="Homepage-Features-Desktop.avif">
+
     <h2>Features That Come Standard</h2>
+
   </div>
+
 </section>
 
-<script>
-let heroIndex = 1;
-const maxHero = 3;
-let vehicleIndex = 1;
-const maxVehicles = 5;
 
-function updateHero() { 
-    const radio = document.getElementById('h' + heroIndex);
-    if(radio) radio.checked = true; 
-}
 
-function nextHero() { 
-    heroIndex++; 
-    if(heroIndex > maxHero) heroIndex = 1; 
-    updateHero(); 
-}
-
-function prevHero() { 
-    heroIndex--; 
-    if(heroIndex < 1) heroIndex = maxHero; 
-    updateHero(); 
-}
-
-let autoHeroSlider = setInterval(nextHero, 5000);
-
-function manualHero(direction) {
-    clearInterval(autoHeroSlider); 
-    if(direction === 'next') nextHero();
-    else prevHero();
-    autoHeroSlider = setInterval(nextHero, 5000); 
-}
-function updateVehicle() { 
-    const radio = document.getElementById('s' + vehicleIndex);
-    if(radio) radio.checked = true; 
-}
-
-function nextVehicle() { 
-    vehicleIndex++; 
-    if(vehicleIndex > maxVehicles) vehicleIndex = 1; 
-    updateVehicle(); 
-}
-
-function prevVehicle() { 
-    vehicleIndex--; 
-    if(vehicleIndex < 1) vehicleIndex = maxVehicles; 
-    updateVehicle(); 
-}
-</script>
-
+  <script>
+    let heroIdx = 1;
+    function autoHero() {
+      heroIdx++;
+      if(heroIdx > 3) heroIdx = 1;
+      document.getElementById('h' + heroIdx).checked = true;
+    }
+    setInterval(autoHero, 5000); 
+    
+    let vIdx = 1;
+    function nextVehicle() {
+      vIdx++;
+      if(vIdx > 5) vIdx = 1;
+      document.getElementById('s' + vIdx).checked = true;
+    }
+    function prevVehicle() {
+      vIdx--;
+      if(vIdx < 1) vIdx = 5;
+      document.getElementById('s' + vIdx).checked = true;
+    }
+  </script>
 </body>
 </html>
